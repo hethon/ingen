@@ -1,0 +1,10 @@
+{
+  "sh": {
+    "url": "https://github.com/astral-sh/uv/releases/download/0.11.31/uv-installer.sh",
+    "sha256": "bd9a2739c49251c71fd3706ac00b1bb8582ea138433c6e52840de4aba646e46a"
+  },
+  "ps1": {
+    "url": "https://github.com/astral-sh/uv/releases/download/0.11.31/uv-installer.ps1",
+    "sha256": "87c68faa52d996e5e2d6606ede188b89a1fdbfdf4c4ee1da3d0c24a273881935"
+  }
+}

@@ -1,0 +1,12 @@
+This project vendors two files from cargo-dist (https://github.com/axodotdev/cargo-dist),
+unmodified, under templates/:
+
+  templates/installer.sh.j2
+  templates/installer.ps1.j2
+
+cargo-dist is licensed under MIT OR Apache-2.0. Copyright 2022-2024, axodotdev.
+Full license text: https://github.com/axodotdev/cargo-dist/blob/main/LICENSE-MIT
+                    https://github.com/axodotdev/cargo-dist/blob/main/LICENSE-APACHE
+
+These files are kept unmodified from upstream where possible. Any local
+patches are tracked in PATCHES.md alongside their upstream source version.

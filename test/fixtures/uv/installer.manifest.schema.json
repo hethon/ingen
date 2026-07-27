@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "app_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "base_urls": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "hosting": {
+      "type": "object",
+      "properties": {
+        "github": {
+          "type": "object",
+          "properties": {
+            "artifact_download_path": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "artifact_download_path"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "github"
+      ],
+      "additionalProperties": false
+    },
+    "install_success_msg": {
+      "type": "string",
+      "minLength": 1
+    },
+    "install_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "bin_aliases": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repo": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tag": {
+      "type": "string",
+      "minLength": 1
+    },
+    "windows_archive": {
+      "type": "string",
+      "enum": [
+        ".tar.gz",
+        ".tar.xz",
+        ".tar.zst",
+        ".zip"
+      ]
+    },
+    "unix_archive": {
+      "type": "string",
+      "enum": [
+        ".tar.gz",
+        ".tar.xz",
+        ".tar.zst",
+        ".zip"
+      ]
+    },
+    "executables": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cdylibs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "cstaticlibs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "checksum_style": {
+      "type": "string",
+      "enum": [
+        "sha256",
+        "sha512",
+        "sha3-256",
+        "sha3-512",
+        "blake2s",
+        "blake2b"
+      ]
+    },
+    "platform_support": {
+      "type": "object",
+      "properties": {
+        "archives": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "checksum": {
+                "type": "string",
+                "minLength": 1
+              },
+              "executables": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "cdylibs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "cstaticlibs": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "zip_style": {
+                "type": "string",
+                "enum": [
+                  ".tar.gz",
+                  ".tar.xz",
+                  ".tar.zst",
+                  ".zip"
+                ]
+              },
+              "checksum_style": {
+                "type": "string",
+                "enum": [
+                  "sha256",
+                  "sha512",
+                  "sha3-256",
+                  "sha3-512",
+                  "blake2s",
+                  "blake2b"
+                ]
+              },
+              "platforms": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "target_triple": {
+                      "type": "string",
+                      "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
+                    },
+                    "runtime_conditions": {
+                      "default": {},
+                      "type": "object",
+                      "properties": {
+                        "min_glibc_version": {
+                          "type": "object",
+                          "properties": {
+                            "major": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "series": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "required": [
+                            "major",
+                            "series"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "min_musl_version": {
+                          "type": "object",
+                          "properties": {
+                            "major": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "series": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            }
+                          },
+                          "required": [
+                            "major",
+                            "series"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "rosetta2": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "support_quality": {
+                      "type": "string",
+                      "enum": [
+                        "HostNative",
+                        "BulkyNative",
+                        "ImperfectNative",
+                        "Emulated",
+                        "Hellmulated"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "target_triple",
+                    "support_quality"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "id",
+              "platforms"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "archives"
+      ],
+      "additionalProperties": false
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "app_name",
+    "base_urls",
+    "hosting",
+    "install_success_msg",
+    "install_paths",
+    "bin_aliases",
+    "owner",
+    "repo",
+    "version",
+    "tag",
+    "windows_archive",
+    "unix_archive",
+    "executables",
+    "cdylibs",
+    "cstaticlibs",
+    "checksum_style",
+    "platform_support"
+  ],
+  "additionalProperties": false
+}

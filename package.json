@@ -1,0 +1,45 @@
+{
+  "name": "@hethon/ingen",
+  "version": "0.1.0",
+  "description": "Installer script generator.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "ingen": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "NOTICE",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write .",
+    "fix": "biome check --write .",
+    "prepare": "simple-git-hooks"
+  },
+  "dependencies": {
+    "minijinja-js": "^2.21.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.4",
+    "@types/bun": "latest",
+    "lint-staged": "^17.2.0",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^5.9.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bun run lint-staged",
+    "pre-push": "bun run check && bun run typecheck && bun test"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "biome check --write"
+    ]
+  }
+}
