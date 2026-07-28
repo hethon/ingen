@@ -127,6 +127,10 @@
         "blake2b"
       ]
     },
+    "min_glibc_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    },
     "platform_support": {
       "type": "object",
       "properties": {
@@ -139,6 +143,10 @@
               "id": {
                 "type": "string",
                 "minLength": 1
+              },
+              "target_triple": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
               },
               "checksum": {
                 "type": "string",
@@ -186,88 +194,14 @@
                   "blake2b"
                 ]
               },
-              "platforms": {
-                "minItems": 1,
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "target_triple": {
-                      "type": "string",
-                      "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
-                    },
-                    "runtime_conditions": {
-                      "default": {},
-                      "type": "object",
-                      "properties": {
-                        "min_glibc_version": {
-                          "type": "object",
-                          "properties": {
-                            "major": {
-                              "type": "integer",
-                              "minimum": 0,
-                              "maximum": 9007199254740991
-                            },
-                            "series": {
-                              "type": "integer",
-                              "minimum": 0,
-                              "maximum": 9007199254740991
-                            }
-                          },
-                          "required": [
-                            "major",
-                            "series"
-                          ],
-                          "additionalProperties": false
-                        },
-                        "min_musl_version": {
-                          "type": "object",
-                          "properties": {
-                            "major": {
-                              "type": "integer",
-                              "minimum": 0,
-                              "maximum": 9007199254740991
-                            },
-                            "series": {
-                              "type": "integer",
-                              "minimum": 0,
-                              "maximum": 9007199254740991
-                            }
-                          },
-                          "required": [
-                            "major",
-                            "series"
-                          ],
-                          "additionalProperties": false
-                        },
-                        "rosetta2": {
-                          "type": "boolean"
-                        }
-                      },
-                      "additionalProperties": false
-                    },
-                    "support_quality": {
-                      "type": "string",
-                      "enum": [
-                        "HostNative",
-                        "BulkyNative",
-                        "ImperfectNative",
-                        "Emulated",
-                        "Hellmulated"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "target_triple",
-                    "support_quality"
-                  ],
-                  "additionalProperties": false
-                }
+              "min_glibc_version": {
+                "type": "string",
+                "pattern": "^\\d+\\.\\d+$"
               }
             },
             "required": [
               "id",
-              "platforms"
+              "target_triple"
             ],
             "additionalProperties": false
           }
@@ -299,6 +233,7 @@
     "cdylibs",
     "cstaticlibs",
     "checksum_style",
+    "min_glibc_version",
     "platform_support"
   ],
   "additionalProperties": false

@@ -1,16 +1,14 @@
 import { z } from "zod";
 import { commonContextSchema, fragmentSchema } from "./common_context.schema";
 
-const VersionSchema = z
-  .strictObject({
-    major: z.number().int().nonnegative(),
-    series: z.number().int().nonnegative(),
-  })
-  .optional();
+const VersionSchema = z.strictObject({
+  major: z.number().int().nonnegative(),
+  series: z.number().int().nonnegative(),
+});
 
-export const runtimeConditionsSchema = z.strictObject({
-  min_glibc_version: VersionSchema,
-  min_musl_version: VersionSchema,
+const runtimeConditionsSchema = z.strictObject({
+  min_glibc_version: VersionSchema.optional(),
+  min_musl_version: VersionSchema.optional(),
   rosetta2: z.boolean().optional(),
 });
 
@@ -36,3 +34,4 @@ export const shContextSchema = commonContextSchema.extend({
 });
 
 export type ShContext = z.input<typeof shContextSchema>;
+export type LibcVersion = z.input<typeof VersionSchema>;

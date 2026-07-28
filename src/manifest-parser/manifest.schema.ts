@@ -1,25 +1,21 @@
 import { z } from "zod";
-import {
-  checksumSchema,
-  fragmentSchema,
-  targetTripleSchema,
-} from "../template-context/common_context.schema";
-import { runtimeConditionsSchema, shContextSchema } from "../template-context/sh_context.schema";
+import { checksumSchema, fragmentSchema } from "../template-context/common_context.schema";
+import { type LibcVersion, shContextSchema } from "../template-context/sh_context.schema";
 
-// One entry in an archive's own platform-compatibility list: which triple
-// it covers, and under what runtime conditions.
-const manifestPlatformEntrySchema = z.strictObject({
-  target_triple: targetTripleSchema,
-  runtime_conditions: runtimeConditionsSchema.default({}),
-  support_quality: z.enum(["HostNative", "BulkyNative", "ImperfectNative", "Emulated", "Hellmulated"]),
-});
+export const libcVersionSchema = z
+  .string()
+  .regex(/^\d+\.\d+$/)
+  .transform((value): LibcVersion => {
+    const [major, series] = value.split(".") as [string, string];
+
+    return {
+      major: Number(major),
+      series: Number(series),
+    };
+  });
 
 const manifestArchiveSchema = fragmentSchema
   .omit({
-    // reason: replaced by `platforms[]`, so one archive can
-    // declare coverage of multiple triples at once.
-    target_triple: true,
-
     // reason: no updater support; always a schema-level literal
     // in the template-context schemas.
     updater: true,
@@ -27,7 +23,7 @@ const manifestArchiveSchema = fragmentSchema
   .extend({
     checksum_style: checksumSchema.shape.style.optional(),
     checksum: checksumSchema.shape.value.optional(),
-    platforms: z.array(manifestPlatformEntrySchema).min(1),
+    min_glibc_version: libcVersionSchema.optional(),
   })
   .partial({
     executables: true,
@@ -88,6 +84,7 @@ export const manifestSchema = shContextSchema
     cdylibs: z.array(z.string().min(1)),
     cstaticlibs: z.array(z.string().min(1)),
     checksum_style: checksumSchema.shape.style,
+    min_glibc_version: libcVersionSchema,
 
     platform_support: manifestPlatformSupportSchema,
   });
