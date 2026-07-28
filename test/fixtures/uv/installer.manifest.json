@@ -6,8 +6,8 @@
   "repo": "uv",
   "tag": "{version}",
   "base_urls": [
-    "https://releases.astral.sh/github/uv/releases/download/0.11.31",
-    "https://github.com/astral-sh/uv/releases/download/0.11.31"
+    "https://releases.astral.sh/github/{repo}/releases/download/{tag}",
+    "https://github.com/{owner}/{repo}/releases/download/{tag}"
   ],
   "hosting": {
     "github": {
