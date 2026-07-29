@@ -1,5 +1,4 @@
 import { Environment } from "minijinja-js";
-import { z } from "zod";
 import { manifestSchema } from "./manifest-parser/manifest.schema";
 import { resolveManifest } from "./manifest-parser/manifest_to_context";
 import { ps1ContextSchema } from "./template-context/ps1_context.schema";
@@ -23,7 +22,6 @@ interface RenderInput {
 interface RenderOutput {
   shOutput: string;
   ps1Output: string;
-  manifestJsonSchema: object;
 }
 
 function buildEnvironment(templates: RenderInput["templates"]): Environment {
@@ -56,14 +54,5 @@ export function render(input: RenderInput): RenderOutput {
   const shOutput = env.renderTemplate(SH_TEMPLATE_NAME, shContext);
   const ps1Output = env.renderTemplate(PS1_TEMPLATE_NAME, ps1Context);
 
-  const manifestJsonSchema = z.toJSONSchema(
-    manifestSchema.extend({
-      $schema: z.string().optional(),
-    }),
-    {
-      io: "input",
-    },
-  );
-
-  return { shOutput, ps1Output, manifestJsonSchema };
+  return { shOutput, ps1Output };
 }

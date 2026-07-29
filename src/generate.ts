@@ -1,5 +1,5 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, parse } from "node:path";
+import { dirname, join } from "node:path";
 import { render } from "./render";
 
 interface GenerateOptions {
@@ -28,7 +28,7 @@ export function generate(opts: GenerateOptions): void {
     ps1: readFileSync(join(opts.templatesDir, "installer.ps1.j2"), "utf8"),
   };
 
-  const { shOutput, ps1Output, manifestJsonSchema } = render({
+  const { shOutput, ps1Output } = render({
     rawManifest,
     templates,
     provider: opts.provider,
@@ -42,10 +42,4 @@ export function generate(opts: GenerateOptions): void {
 
   writeFileSync(outSh, shOutput, { mode: 0o755 });
   writeFileSync(outPs1, ps1Output);
-
-  // generate json schema
-  const { dir, name } = parse(opts.manifestPath);
-  const schemaPath = join(dir, `${name}.schema.json`);
-
-  writeFileSync(schemaPath, JSON.stringify(manifestJsonSchema, null, 2));
 }

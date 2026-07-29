@@ -20,7 +20,8 @@
     "typecheck": "tsc --noEmit",
     "format": "biome format --write .",
     "fix": "biome check --write .",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "build": "bun build src/index.ts --target=node --outdir=dist --packages=external && bun run scripts/generate-schema.ts"
   },
   "dependencies": {
     "minijinja-js": "^2.21.0",
