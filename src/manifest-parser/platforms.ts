@@ -63,6 +63,7 @@ export function supports(
   if (degunked_target.endsWith("musl")) {
     const system = degunked_target.slice(0, -"musl".length);
     target = `${system}musl-static${abigunk}`;
+    archive.target_triple = target;
     degunked_target = `${degunked_target}-static`;
   }
 
