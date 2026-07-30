@@ -323,7 +323,7 @@ download_binary_and_run_installer() {
             _updater_bin=""
             ;;
         "caddy_2.11.4_linux_armv6.tar.gz")
-            _arch="arm-unknown-linux-musleabi"
+            _arch="arm-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
             _checksum_style="sha256"
             _checksum_value="24ed7d2c7dad8d9e57499c1004bd45909de5ca0683b38b22ae6fec80c4b80e92"
@@ -593,7 +593,13 @@ json_binary_aliases() {
     "arm-unknown-freebsd")
         echo '{}'
         ;;
-    "arm-unknown-linux-musleabi")
+    "arm-unknown-linux-gnueabihf")
+        echo '{}'
+        ;;
+    "arm-unknown-linux-musl-dynamiceabihf")
+        echo '{}'
+        ;;
+    "arm-unknown-linux-musl-staticeabihf")
         echo '{}'
         ;;
     "armv5te-unknown-linux-musleabi")
@@ -716,7 +722,21 @@ aliases_for_binary() {
             ;;
         esac
         ;;
-    "arm-unknown-linux-musleabi")
+    "arm-unknown-linux-gnueabihf")
+        case "$_bin" in
+        *)
+            echo ""
+            ;;
+        esac
+        ;;
+    "arm-unknown-linux-musl-dynamiceabihf")
+        case "$_bin" in
+        *)
+            echo ""
+            ;;
+        esac
+        ;;
+    "arm-unknown-linux-musl-staticeabihf")
         case "$_bin" in
         *)
             echo ""
@@ -942,7 +962,21 @@ select_archive_for_arch() {
                 return 0
             fi
             ;;
-        "arm-unknown-linux-musleabi")
+        "arm-unknown-linux-gnueabihf")
+            _archive="caddy_2.11.4_linux_armv6.tar.gz"
+            if [ -n "$_archive" ]; then
+                echo "$_archive"
+                return 0
+            fi
+            ;;
+        "arm-unknown-linux-musl-dynamiceabihf")
+            _archive="caddy_2.11.4_linux_armv6.tar.gz"
+            if [ -n "$_archive" ]; then
+                echo "$_archive"
+                return 0
+            fi
+            ;;
+        "arm-unknown-linux-musl-staticeabihf")
             _archive="caddy_2.11.4_linux_armv6.tar.gz"
             if [ -n "$_archive" ]; then
                 echo "$_archive"

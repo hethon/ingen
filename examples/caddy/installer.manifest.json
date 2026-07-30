@@ -61,7 +61,7 @@
       },
       {
         "id": "caddy_2.11.4_linux_armv6.tar.gz",
-        "target_triple": "arm-unknown-linux-musleabi",
+        "target_triple": "arm-unknown-linux-musleabihf",
         "checksum": "24ed7d2c7dad8d9e57499c1004bd45909de5ca0683b38b22ae6fec80c4b80e92"
       },
       {
