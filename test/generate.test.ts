@@ -100,11 +100,10 @@ describe("generate", () => {
     }
 
     const templateVersion = TEMPLATE_VERSION_OVERRIDES[name] ?? DEFAULT_TEMPLATE_VERSION;
-    const templatesDir = join(TEMPLATES_DIR, templateVersion);
+    const localTemplatesDir = join(fixtureDir, "templates");
+    const templatesDir = existsSync(localTemplatesDir) ? localTemplatesDir : TEMPLATES_DIR;
     if (!existsSync(templatesDir)) {
-      throw new Error(
-        `fixture "${name}" wants templates/${templateVersion}/, but that directory doesn't exist`,
-      );
+      throw new Error(`fixture "${name}" wants ${templatesDir}/, but that directory doesn't exist`);
     }
 
     test(`${name}: generated installer.sh matches real dist output (templates ${templateVersion})`, async () => {

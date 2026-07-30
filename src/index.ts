@@ -21,7 +21,7 @@ cli
   .command("<manifest> [output-dir]", "Generate shell/PowerShell installers")
   .action((manifestPath: string, outDirArg: string | undefined) => {
     const outDir = outDirArg ?? "./out";
-    const templatesDir = join(__dirname, "..", "templates", PROVIDER.version);
+    const templatesDir = join(__dirname, "..", "templates");
 
     try {
       generate({ manifestPath, templatesDir, outDir, provider: PROVIDER });
