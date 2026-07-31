@@ -1,0 +1,8 @@
+{
+  "repository": "axodotdev/cargo-dist",
+  "ref": "v0.32.0",
+  "files": {
+    "cargo-dist/templates/installer/installer.sh.j2": "templates/installer.sh.j2",
+    "cargo-dist/templates/installer/installer.ps1.j2": "templates/installer.ps1.j2"
+  }
+}
