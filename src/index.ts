@@ -11,8 +11,8 @@ import { generate } from "./generate";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const PROVIDER = {
-  source: "cargo-dist",
-  version: "0.32.0",
+  source: "ingen",
+  version: pkg.version,
 } as const;
 
 const cli = cac("ingen");

@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${CADDY_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"cargo-dist","version":"0.32.0"},"source":{"app_name":"caddy","name":"caddy","owner":"caddyserver","release_type":"github"},"version":"2.11.4"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"caddy","name":"caddy","owner":"caddyserver","release_type":"github"},"version":"2.11.4"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME

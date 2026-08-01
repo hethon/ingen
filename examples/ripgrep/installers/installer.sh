@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${RIPGREP_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"cargo-dist","version":"0.32.0"},"source":{"app_name":"ripgrep","name":"ripgrep","owner":"BurntSushi","release_type":"github"},"version":"15.2.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"ripgrep","name":"ripgrep","owner":"BurntSushi","release_type":"github"},"version":"15.2.0"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME
