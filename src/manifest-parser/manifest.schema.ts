@@ -14,8 +14,12 @@ export const libcVersionSchema = z
     };
   });
 
+const archiveLayoutSchema = z.enum(["flat", "wrapped"]);
+
 const manifestArchiveSchema = fragmentSchema
   .omit({
+    // reason: will be derived from "layout"
+    zip_depth: true,
     // reason: no updater support; always a schema-level literal
     // in the template-context schemas.
     updater: true,
@@ -24,6 +28,7 @@ const manifestArchiveSchema = fragmentSchema
     checksum_style: checksumSchema.shape.style.optional(),
     checksum: checksumSchema.shape.value.optional(),
     min_glibc_version: libcVersionSchema.optional(),
+    layout: archiveLayoutSchema.optional(),
   })
   .partial({
     executables: true,
@@ -78,8 +83,14 @@ export const manifestSchema = shContextSchema
     bin_aliases: z.record(z.string(), z.array(z.string().min(1))),
 
     // Global defaults for `manifestArchiveSchema` fields
-    windows_archive: fragmentSchema.shape.zip_style,
-    unix_archive: fragmentSchema.shape.zip_style,
+    windows_archive: z.strictObject({
+      style: fragmentSchema.shape.zip_style,
+      layout: archiveLayoutSchema,
+    }),
+    unix_archive: z.strictObject({
+      style: fragmentSchema.shape.zip_style,
+      layout: archiveLayoutSchema,
+    }),
     executables: z.array(z.string().min(1)).min(1),
     cdylibs: z.array(z.string().min(1)),
     cstaticlibs: z.array(z.string().min(1)),

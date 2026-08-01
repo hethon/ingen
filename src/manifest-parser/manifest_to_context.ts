@@ -131,8 +131,8 @@ function reconstructPlatformSupport(
   const executables = manifest.executables;
   const cdylibs = manifest.cdylibs;
   const cstaticlibs = manifest.cstaticlibs;
-  const windowsArchive = manifest.windows_archive;
-  const unixArchive = manifest.unix_archive;
+  const windowsArchiveStyle = manifest.windows_archive.style;
+  const unixArchiveStyle = manifest.unix_archive.style;
   const checksum_style = manifest.checksum_style;
   const min_glibc_version = manifest.min_glibc_version;
   // ---
@@ -151,6 +151,10 @@ function reconstructPlatformSupport(
       checksum = null;
     }
 
+    const archiveLayout =
+      archive.layout ?? (isWindows ? manifest.windows_archive.layout : manifest.unix_archive.layout);
+    const zip_depth: "0" | "1" = archiveLayout === "wrapped" ? "1" : "0";
+
     return {
       ...archive,
       target_triple: archive.target_triple,
@@ -158,7 +162,8 @@ function reconstructPlatformSupport(
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
       cdylibs: archive.cdylibs ?? cdylibs,
       cstaticlibs: archive.cstaticlibs ?? cstaticlibs,
-      zip_style: archive.zip_style ?? (isWindows ? windowsArchive : unixArchive),
+      zip_style: archive.zip_style ?? (isWindows ? windowsArchiveStyle : unixArchiveStyle),
+      zip_depth: zip_depth,
       min_glibc_version: archive.min_glibc_version ?? min_glibc_version,
     };
   });

@@ -38,6 +38,7 @@ export const fragmentSchema = z.strictObject({
   cdylibs: z.array(z.string().min(1)),
   cstaticlibs: z.array(z.string().min(1)),
   zip_style: zipStyleSchema,
+  zip_depth: z.enum(["0", "1"]),
   // No updater support, always null.
   updater: z.null().default(null),
 });

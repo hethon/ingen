@@ -225,6 +225,7 @@ download_binary_and_run_installer() {
     _artifact_name="$(select_archive_for_arch "$_true_arch")" || return 1
     local _bins
     local _zip_ext
+    local _zip_depth
     local _arch
     local _checksum_style
     local _checksum_value
@@ -234,6 +235,7 @@ download_binary_and_run_installer() {
         "{{ archive.id }}")
             _arch="{{ archive.target_triple }}"
             _zip_ext="{{ archive.zip_style }}"
+            _zip_depth="{{ archive.zip_depth }}"
             {%- if archive.checksum %}
             _checksum_style="{{ archive.checksum.style }}"
             _checksum_value="{{ archive.checksum.value }}"
@@ -336,10 +338,21 @@ download_binary_and_run_installer() {
     case "$_zip_ext" in
         ".zip")
             ensure unzip -q "$_file" -d "$_dir"
+            if [ "$_zip_depth" = "1" ]; then
+                set -- "$_dir"/*/
+
+                # Expect exactly one top-level directory.
+                if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
+                    err "expected archive to contain exactly one top-level directory"
+                fi
+
+                ensure mv "$1"* "$_dir"/
+                ensure rmdir "$1"
+            fi
             ;;
 
         ".tar."*)
-            ensure tar xf "$_file" --no-same-owner --strip-components 1 -C "$_dir"
+            ensure tar xf "$_file" --no-same-owner --strip-components "$_zip_depth" -C "$_dir"
             ;;
         *)
             err "unknown archive format: $_zip_ext"

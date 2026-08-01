@@ -77,22 +77,56 @@
       "minLength": 1
     },
     "windows_archive": {
-      "type": "string",
-      "enum": [
-        ".tar.gz",
-        ".tar.xz",
-        ".tar.zst",
-        ".zip"
-      ]
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": [
+            ".tar.gz",
+            ".tar.xz",
+            ".tar.zst",
+            ".zip"
+          ]
+        },
+        "layout": {
+          "type": "string",
+          "enum": [
+            "flat",
+            "wrapped"
+          ]
+        }
+      },
+      "required": [
+        "style",
+        "layout"
+      ],
+      "additionalProperties": false
     },
     "unix_archive": {
-      "type": "string",
-      "enum": [
-        ".tar.gz",
-        ".tar.xz",
-        ".tar.zst",
-        ".zip"
-      ]
+      "type": "object",
+      "properties": {
+        "style": {
+          "type": "string",
+          "enum": [
+            ".tar.gz",
+            ".tar.xz",
+            ".tar.zst",
+            ".zip"
+          ]
+        },
+        "layout": {
+          "type": "string",
+          "enum": [
+            "flat",
+            "wrapped"
+          ]
+        }
+      },
+      "required": [
+        "style",
+        "layout"
+      ],
+      "additionalProperties": false
     },
     "executables": {
       "minItems": 1,
@@ -197,6 +231,13 @@
               "min_glibc_version": {
                 "type": "string",
                 "pattern": "^\\d+\\.\\d+$"
+              },
+              "layout": {
+                "type": "string",
+                "enum": [
+                  "flat",
+                  "wrapped"
+                ]
               }
             },
             "required": [

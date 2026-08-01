@@ -15,8 +15,14 @@
       "artifact_download_path": "/astral-sh/uv/releases/download/0.11.31"
     }
   },
-  "windows_archive": ".zip",
-  "unix_archive": ".tar.gz",
+  "windows_archive": {
+    "style": ".zip",
+    "layout": "flat"
+  },
+  "unix_archive": {
+    "style": ".tar.gz",
+    "layout": "wrapped"
+  },
   "executables": ["uv", "uvx"],
   "cdylibs": [],
   "cstaticlibs": [],
