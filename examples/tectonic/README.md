@@ -22,7 +22,3 @@ Tectonic currently offers its own custom Shell/Powershell installation scripts. 
    }
    ```
    The generated installer will automatically create a hardlink(on windows)/symlink(on linux) named `nextonic` alongside the installed executable, allowing the user to use both `tectonic` and `nextonic` immediately after installation.
-
-## Known Issues
-
-- **Flat `tar.gz` Archives:** Tectonic's `.tar.gz` files are packaged "flat" (the executable sits at the root of the archive). The current `installer.sh.j2` template attempts to strip a wrapper directory when unpacking. *A future patch will add a configuration option to handle flat archives.*

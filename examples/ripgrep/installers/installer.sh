@@ -218,6 +218,7 @@ download_binary_and_run_installer() {
     _artifact_name="$(select_archive_for_arch "$_true_arch")" || return 1
     local _bins
     local _zip_ext
+    local _zip_depth
     local _arch
     local _checksum_style
     local _checksum_value
@@ -227,6 +228,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-aarch64-apple-darwin.tar.gz")
             _arch="aarch64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="3750b2e93f37e0c692657da574d7019a101c0084da05a790c83fd335bad973e4"
             _bins="rg"
@@ -241,6 +243,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-aarch64-pc-windows-msvc.zip")
             _arch="aarch64-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="e4abca10c3a64ebea742667dd7009449d49403db5460dd6873e389fa2945360f"
             _bins="rg.exe"
@@ -255,6 +258,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz")
             _arch="aarch64-unknown-linux-gnu"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="a740b91c82eaf9914cfedd353572f2791cbe0162c84101ee0951058f4dcbc90d"
             _bins="rg"
@@ -269,6 +273,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-aarch64-unknown-linux-musl.tar.gz")
             _arch="aarch64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="800b1e7206afe799dfb5a6901f23147cfaabe0e52210538100f61e86e1740915"
             _bins="rg"
@@ -283,6 +288,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-armv7-unknown-linux-gnueabihf.tar.gz")
             _arch="armv7-unknown-linux-gnueabihf"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="d859589734d9d802107ad9eff6a78cfd9b0080d2fecb0ad8772605b35e373199"
             _bins="rg"
@@ -297,6 +303,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-armv7-unknown-linux-musleabi.tar.gz")
             _arch="armv7-unknown-linux-musleabi"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="c9617116c02d4cf4f000e156890aed79979aa6d2f6347925aea5a61c1b0eab87"
             _bins="rg"
@@ -311,6 +318,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-armv7-unknown-linux-musleabihf.tar.gz")
             _arch="armv7-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="0332b481aa007969a54d5c19e793208e73405c48d38f226bdee56b9ed085cdde"
             _bins="rg"
@@ -325,6 +333,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-i686-pc-windows-msvc.zip")
             _arch="i686-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="9bf73bdb3fda9ad4b0235e1295b02c717031c986afa4d7c05dd0af8b74010a95"
             _bins="rg.exe"
@@ -339,6 +348,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-s390x-unknown-linux-gnu.tar.gz")
             _arch="s390x-unknown-linux-gnu"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="b61a442344f0591321960def6adb8c828b68a448301d1ed93959656fcd3b79c2"
             _bins="rg"
@@ -353,6 +363,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-x86_64-apple-darwin.tar.gz")
             _arch="x86_64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="af7825fcc69a2afc7a7aea55fc9af90e26421d8f20fe59df32e233c0b8a231c1"
             _bins="rg"
@@ -367,6 +378,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-x86_64-pc-windows-gnu.zip")
             _arch="x86_64-pc-windows-gnu"
             _zip_ext=".zip"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="5dbdc225a3ce064314fc05b6de8423a08a7b681764c1a276ff8263feaf68c7d6"
             _bins="rg.exe"
@@ -381,6 +393,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-x86_64-pc-windows-msvc.zip")
             _arch="x86_64-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
             _bins="rg.exe"
@@ -395,6 +408,7 @@ download_binary_and_run_installer() {
         "ripgrep-15.2.0-x86_64-unknown-linux-musl.tar.gz")
             _arch="x86_64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="1"
             _checksum_style="sha256"
             _checksum_value="33e15bcf1624b25cdd2a55813a47a2f95dbe126268203e76aa6a585d1e7b149c"
             _bins="rg"
@@ -480,10 +494,21 @@ download_binary_and_run_installer() {
     case "$_zip_ext" in
         ".zip")
             ensure unzip -q "$_file" -d "$_dir"
+            if [ "$_zip_depth" = "1" ]; then
+                set -- "$_dir"/*/
+
+                # Expect exactly one top-level directory.
+                if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
+                    err "expected archive to contain exactly one top-level directory"
+                fi
+
+                ensure mv "$1"* "$_dir"/
+                ensure rmdir "$1"
+            fi
             ;;
 
         ".tar."*)
-            ensure tar xf "$_file" --no-same-owner --strip-components 1 -C "$_dir"
+            ensure tar xf "$_file" --no-same-owner --strip-components "$_zip_depth" -C "$_dir"
             ;;
         *)
             err "unknown archive format: $_zip_ext"

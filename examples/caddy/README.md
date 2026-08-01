@@ -18,6 +18,4 @@ bun run ingen installer.manifest.json installers
 
 ## Known Issues
 
-- **Flat `tar.gz` Archives:** Caddy's `.tar.gz` files are packaged "flat" (the executable sits at the root of the archive rather than inside a wrapper directory). The current `installer.sh.j2` template may attempt to strip a wrapper directory when unpacking. *A future patch will add a configuration option to handle flat archives.*
-
 - **Unreachable Targets:** We included Caddy's `armv5` and `FreeBSD+ARM` binaries in the manifest for completeness. However, the OS/architecture detection logic in the underlying `installer.sh.j2` template does not currently recognize these specific environments, making these specific binaries practically unreachable for end-users running the script.

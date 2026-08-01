@@ -15,8 +15,14 @@
   "install_paths": ["$XDG_BIN_HOME/", "$XDG_DATA_HOME/../bin", "~/.local/bin"],
   "install_success_msg": "everything's installed!",
   "bin_aliases": {},
-  "windows_archive": ".zip",
-  "unix_archive": ".tar.gz",
+  "windows_archive": {
+    "style": ".zip",
+    "layout": "flat"
+  },
+  "unix_archive": {
+    "style": ".tar.gz",
+    "layout": "flat"
+  },
   "executables": ["caddy"],
   "cdylibs": [],
   "cstaticlibs": [],

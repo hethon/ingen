@@ -218,6 +218,7 @@ download_binary_and_run_installer() {
     _artifact_name="$(select_archive_for_arch "$_true_arch")" || return 1
     local _bins
     local _zip_ext
+    local _zip_depth
     local _arch
     local _checksum_style
     local _checksum_value
@@ -227,6 +228,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_freebsd_amd64.tar.gz")
             _arch="x86_64-unknown-freebsd"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="b8bf851214f948788a14956b1edab14e21ec69109728b594d07c4149d09711ea"
             _bins="caddy"
@@ -241,6 +243,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_freebsd_arm64.tar.gz")
             _arch="aarch64-unknown-freebsd"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="33c568ce3040a103879cbf8bb16785b4ffb71f0deb07e702458eb27fd656ed01"
             _bins="caddy"
@@ -255,6 +258,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_freebsd_armv6.tar.gz")
             _arch="arm-unknown-freebsd"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="d67bde4f9080a54becf6e4733d49197db09790cdabf07bfa1145be2ea960ee33"
             _bins="caddy"
@@ -269,6 +273,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_freebsd_armv7.tar.gz")
             _arch="armv7-unknown-freebsd"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="dca0b0f44d08509bdc2797cfaaf33d6db26dfe493d4dd623e78bcd46c40a4d9d"
             _bins="caddy"
@@ -283,6 +288,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_amd64.tar.gz")
             _arch="x86_64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="527fbf917c39189a1e3b31d34fa955601680b2d5c8055d2a87b8b9588dec7bb9"
             _bins="caddy"
@@ -297,6 +303,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_arm64.tar.gz")
             _arch="aarch64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="52d42ae12b3462097e9868da6dfed3c9648ae12edd3b3638102312af84cb6904"
             _bins="caddy"
@@ -311,6 +318,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_armv5.tar.gz")
             _arch="armv5te-unknown-linux-musleabi"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="2cb34c2e47774c5a8a137ca258523242e185652d3c121b0f69e2cef0f9c4514a"
             _bins="caddy"
@@ -325,6 +333,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_armv6.tar.gz")
             _arch="arm-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="24ed7d2c7dad8d9e57499c1004bd45909de5ca0683b38b22ae6fec80c4b80e92"
             _bins="caddy"
@@ -339,6 +348,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_armv7.tar.gz")
             _arch="armv7-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="caa71eb180cf6f1f55b37a6c5a364d5cdca6c90f5473de9eb97b1df456184f42"
             _bins="caddy"
@@ -353,6 +363,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_ppc64le.tar.gz")
             _arch="powerpc64le-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="34a99f9c7f45ce0a881a5d50b3f45504e2165055c630c29059129401a8d2b8fd"
             _bins="caddy"
@@ -367,6 +378,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_riscv64.tar.gz")
             _arch="riscv64gc-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="3bb7545503bb294785717d5faaeadba3c0c99869940d77d193efca5c0c2dc365"
             _bins="caddy"
@@ -381,6 +393,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_linux_s390x.tar.gz")
             _arch="s390x-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="730ef4430d40e23e222e370f6c76b48940c716c9eaaa3352b08c4c833d42b736"
             _bins="caddy"
@@ -395,6 +408,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_mac_amd64.tar.gz")
             _arch="x86_64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="34bc9e5cceee8d67844ef51da624f5b79e8d070f27236e050c3f0066a2dba534"
             _bins="caddy"
@@ -409,6 +423,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_mac_arm64.tar.gz")
             _arch="aarch64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="9efb0af2d6cf09cfb5053c0e51721b9b3d4956d346234f39368d943d25a3c9a7"
             _bins="caddy"
@@ -423,6 +438,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_windows_amd64.zip")
             _arch="x86_64-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="1708333f79e274c7697285afe6d592ab39314e0b131e9ec6bea08ad27df62ebf"
             _bins="caddy.exe"
@@ -437,6 +453,7 @@ download_binary_and_run_installer() {
         "caddy_2.11.4_windows_arm64.zip")
             _arch="aarch64-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="c7f16da93728f61455f77c04eac1ff4de06a38da281ed6d3dcbfae795be2a936"
             _bins="caddy.exe"
@@ -522,10 +539,21 @@ download_binary_and_run_installer() {
     case "$_zip_ext" in
         ".zip")
             ensure unzip -q "$_file" -d "$_dir"
+            if [ "$_zip_depth" = "1" ]; then
+                set -- "$_dir"/*/
+
+                # Expect exactly one top-level directory.
+                if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
+                    err "expected archive to contain exactly one top-level directory"
+                fi
+
+                ensure mv "$1"* "$_dir"/
+                ensure rmdir "$1"
+            fi
             ;;
 
         ".tar."*)
-            ensure tar xf "$_file" --no-same-owner --strip-components 1 -C "$_dir"
+            ensure tar xf "$_file" --no-same-owner --strip-components "$_zip_depth" -C "$_dir"
             ;;
         *)
             err "unknown archive format: $_zip_ext"

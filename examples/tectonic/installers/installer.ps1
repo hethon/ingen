@@ -99,6 +99,7 @@ function Install-Binary($install_args) {
       "libs" = @()
       "staticlibs" = @()
       "zip_ext" = ".zip"
+      "zip_depth" = "0"
       "aliases" = @{
         "tectonic.exe" = "nextonic.exe"
       }
@@ -110,6 +111,7 @@ function Install-Binary($install_args) {
       "libs" = @()
       "staticlibs" = @()
       "zip_ext" = ".zip"
+      "zip_depth" = "0"
       "aliases" = @{
         "tectonic.exe" = "nextonic.exe"
       }
@@ -121,6 +123,7 @@ function Install-Binary($install_args) {
       "libs" = @()
       "staticlibs" = @()
       "zip_ext" = ".zip"
+      "zip_depth" = "0"
       "aliases" = @{
         "tectonic.exe" = "nextonic.exe"
       }
@@ -132,6 +135,7 @@ function Install-Binary($install_args) {
       "libs" = @()
       "staticlibs" = @()
       "zip_ext" = ".zip"
+      "zip_depth" = "0"
       "aliases" = @{
         "tectonic.exe" = "nextonic.exe"
       }
@@ -288,6 +292,7 @@ function Download($download_url, $platforms, $arch) {
   # Lookup what we expect this platform to look like
   $info = $platforms[$arch]
   $zip_ext = $info["zip_ext"]
+  $zip_depth = $info["zip_depth"]
   $bin_names = $info["bins"]
   $lib_names = $info["libs"]
   $staticlib_names = $info["staticlibs"]
@@ -321,10 +326,22 @@ function Download($download_url, $platforms, $arch) {
   switch -Wildcard ($zip_ext) {
     ".zip" {
       Expand-Archive -Path $dir_path -DestinationPath "$tmp";
+      if ($zip_depth -eq "1") {
+        $wrapperDirs = @(Get-ChildItem -Path "$tmp" -Directory)
+
+        if ($wrapperDirs.Count -ne 1) {
+          throw "ERROR: expected archive to contain exactly one top-level directory"
+        }
+
+        $wrapperDir = $wrapperDirs[0]
+
+        Get-ChildItem -Path $wrapperDir.FullName -Force | Move-Item -Destination "$tmp"
+        Remove-Item -Path $wrapperDir.FullName -Force
+      }
       Break
     }
     ".tar.*" {
-      tar xf $dir_path --strip-components 1 -C "$tmp";
+      tar xf $dir_path --strip-components $zip_depth -C "$tmp";
       Break
     }
     Default {

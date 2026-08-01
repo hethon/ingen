@@ -218,6 +218,7 @@ download_binary_and_run_installer() {
     _artifact_name="$(select_archive_for_arch "$_true_arch")" || return 1
     local _bins
     local _zip_ext
+    local _zip_depth
     local _arch
     local _checksum_style
     local _checksum_value
@@ -227,6 +228,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-aarch64-apple-darwin.tar.gz")
             _arch="aarch64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="a3f1cac7c5678f01661a92212f58480ae3b0634115d880dbc59e2953ded45667"
             _bins="tectonic"
@@ -241,6 +243,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-aarch64-unknown-linux-musl.tar.gz")
             _arch="aarch64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="b10954a95404f3ab2328d2fa59a5ebab8e657f893fab096f98be8db7c0c979b8"
             _bins="tectonic"
@@ -255,6 +258,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-arm-unknown-linux-musleabihf.tar.gz")
             _arch="arm-unknown-linux-musl-staticeabihf"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="882f5213599931992dfb9f7e1157d3015fd9abd505c68c693b3d6dc20967f7eb"
             _bins="tectonic"
@@ -269,6 +273,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-i686-unknown-linux-gnu.tar.gz")
             _arch="i686-unknown-linux-gnu"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="f4c887268be8ce443de7b4ccb67d6978fe40113ae8872310957693bb80d07ff4"
             _bins="tectonic"
@@ -283,6 +288,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-x86_64-apple-darwin.tar.gz")
             _arch="x86_64-apple-darwin"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="7c90ef5b6ddb1eb1937e4337add5237b79338e4b9676459fa91187d24d6cdf80"
             _bins="tectonic"
@@ -297,6 +303,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-x86_64-pc-windows-gnu.zip")
             _arch="x86_64-pc-windows-gnu"
             _zip_ext=".zip"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="77a0ebba1cc54f6145dbc27377e253c9fffa07eab7c368ff9ef30c2d05557365"
             _bins="tectonic.exe"
@@ -311,6 +318,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-x86_64-pc-windows-msvc.zip")
             _arch="x86_64-pc-windows-msvc"
             _zip_ext=".zip"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="f61ce51f0b0ade1015b7de7ef368541c5424e9756ecbd0d7af97d6d48030845f"
             _bins="tectonic.exe"
@@ -325,6 +333,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz")
             _arch="x86_64-unknown-linux-gnu"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="1a715688baf591e650c8aeb160ae934e181685eecbb38b317de30b269ac5d606"
             _bins="tectonic"
@@ -339,6 +348,7 @@ download_binary_and_run_installer() {
         "tectonic-0.17.0-x86_64-unknown-linux-musl.tar.gz")
             _arch="x86_64-unknown-linux-musl-static"
             _zip_ext=".tar.gz"
+            _zip_depth="0"
             _checksum_style="sha256"
             _checksum_value="8533d07f9ccbd7a65824b9e0459041bca34af1eb33daba48f59215593753a3b7"
             _bins="tectonic"
@@ -424,10 +434,21 @@ download_binary_and_run_installer() {
     case "$_zip_ext" in
         ".zip")
             ensure unzip -q "$_file" -d "$_dir"
+            if [ "$_zip_depth" = "1" ]; then
+                set -- "$_dir"/*/
+
+                # Expect exactly one top-level directory.
+                if [ "$#" -ne 1 ] || [ ! -d "$1" ]; then
+                    err "expected archive to contain exactly one top-level directory"
+                fi
+
+                ensure mv "$1"* "$_dir"/
+                ensure rmdir "$1"
+            fi
             ;;
 
         ".tar."*)
-            ensure tar xf "$_file" --no-same-owner --strip-components 1 -C "$_dir"
+            ensure tar xf "$_file" --no-same-owner --strip-components "$_zip_depth" -C "$_dir"
             ;;
         *)
             err "unknown archive format: $_zip_ext"

@@ -9,8 +9,3 @@ To regenerate the scripts in the `installers/` directory, navigate to this folde
 ```bash
 bun run ingen installer.manifest.json installers
 ```
-
-## Known Issues
-
-- **`installer.sh` (Linux/macOS)**: Works perfectly. It correctly handles `tar.gz` archives where the contents are wrapped in a root folder.
-- **`installer.ps1` (Windows)**: Currently fails to install. Ripgrep packages its Windows `.zip` files with a root directory wrapper, but the current version of our vendored PowerShell template expects a flat archive where the executable is at the root. *A patch for the PowerShell template is planned to resolve this.*
