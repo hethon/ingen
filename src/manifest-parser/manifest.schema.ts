@@ -67,16 +67,12 @@ export const manifestSchema = shContextSchema
     // reason: can be derived from app_name
     env_vars: true,
 
-    // reason: renamed to `version` below
-    app_version: true,
-
     // reason: replaced below, same field name, new shape
     platform_support: true,
   })
   .extend({
     owner: z.string().min(1),
     repo: z.string().min(1),
-    version: z.string().min(1),
     tag: z.string().min(1),
 
     install_paths: z.array(manifestInstallPathStringSchema),

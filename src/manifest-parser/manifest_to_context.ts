@@ -125,7 +125,7 @@ function reconstructPlatformSupport(
     | "unix_archive"
     | "checksum_style"
     | "min_glibc_version"
-    | "version"
+    | "app_version"
   >,
 ): Context["platform_support"] {
   // collect global settings:
@@ -136,7 +136,7 @@ function reconstructPlatformSupport(
   const unixArchiveStyle = manifest.unix_archive.style;
   const checksum_style = manifest.checksum_style;
   const min_glibc_version = manifest.min_glibc_version;
-  const version = manifest.version;
+  const app_version = manifest.app_version;
   // ---
 
   const archivesIntermediate = manifest.platform_support.archives.map((archive) => {
@@ -158,7 +158,7 @@ function reconstructPlatformSupport(
     const zip_depth: "0" | "1" = archiveLayout === "wrapped" ? "1" : "0";
 
     return {
-      id: substitute(archive.id, { version }),
+      id: substitute(archive.id, { app_version }),
       target_triple: archive.target_triple,
       checksum: checksum,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
@@ -191,7 +191,7 @@ export function resolveManifest(
   target: "sh" | "ps1",
   provider: Provider,
 ): ShContext | Ps1Context {
-  const resolvedTag = substitute(manifest.tag, { version: manifest.version });
+  const resolvedTag = substitute(manifest.tag, { app_version: manifest.app_version });
 
   const vars = { owner: manifest.owner, repo: manifest.repo, tag: resolvedTag };
   const resolvedBaseUrls = substituteAll(manifest.base_urls, vars);
@@ -212,7 +212,7 @@ export function resolveManifest(
 
   const common = {
     app_name: manifest.app_name,
-    app_version: manifest.version,
+    app_version: manifest.app_version,
     base_urls: resolvedBaseUrls,
     hosting: {
       github: { artifact_download_path: resolvedArtifactDownloadPath },
@@ -231,7 +231,7 @@ export function resolveManifest(
         name: manifest.repo,
         app_name: manifest.app_name,
       },
-      version: manifest.version,
+      version: manifest.app_version,
     },
   };
 

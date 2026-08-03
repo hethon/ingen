@@ -4,8 +4,8 @@
   "app_name": "ripgrep",
   "owner": "BurntSushi",
   "repo": "ripgrep",
-  "version": "15.2.0",
-  "tag": "{version}",
+  "app_version": "15.2.0",
+  "tag": "{app_version}",
   "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
   "hosting": {
     "github": {
@@ -30,67 +30,67 @@
   "platform_support": {
     "archives": [
       {
-        "id": "ripgrep-{version}-aarch64-apple-darwin.tar.gz",
+        "id": "ripgrep-{app_version}-aarch64-apple-darwin.tar.gz",
         "target_triple": "aarch64-apple-darwin",
         "checksum": "3750b2e93f37e0c692657da574d7019a101c0084da05a790c83fd335bad973e4"
       },
       {
-        "id": "ripgrep-{version}-aarch64-pc-windows-msvc.zip",
+        "id": "ripgrep-{app_version}-aarch64-pc-windows-msvc.zip",
         "target_triple": "aarch64-pc-windows-msvc",
         "checksum": "e4abca10c3a64ebea742667dd7009449d49403db5460dd6873e389fa2945360f"
       },
       {
-        "id": "ripgrep-{version}-aarch64-unknown-linux-gnu.tar.gz",
+        "id": "ripgrep-{app_version}-aarch64-unknown-linux-gnu.tar.gz",
         "target_triple": "aarch64-unknown-linux-gnu",
         "checksum": "a740b91c82eaf9914cfedd353572f2791cbe0162c84101ee0951058f4dcbc90d"
       },
       {
-        "id": "ripgrep-{version}-aarch64-unknown-linux-musl.tar.gz",
+        "id": "ripgrep-{app_version}-aarch64-unknown-linux-musl.tar.gz",
         "target_triple": "aarch64-unknown-linux-musl",
         "checksum": "800b1e7206afe799dfb5a6901f23147cfaabe0e52210538100f61e86e1740915"
       },
       {
-        "id": "ripgrep-{version}-armv7-unknown-linux-gnueabihf.tar.gz",
+        "id": "ripgrep-{app_version}-armv7-unknown-linux-gnueabihf.tar.gz",
         "target_triple": "armv7-unknown-linux-gnueabihf",
         "checksum": "d859589734d9d802107ad9eff6a78cfd9b0080d2fecb0ad8772605b35e373199"
       },
       {
-        "id": "ripgrep-{version}-armv7-unknown-linux-musleabi.tar.gz",
+        "id": "ripgrep-{app_version}-armv7-unknown-linux-musleabi.tar.gz",
         "target_triple": "armv7-unknown-linux-musleabi",
         "checksum": "c9617116c02d4cf4f000e156890aed79979aa6d2f6347925aea5a61c1b0eab87"
       },
       {
-        "id": "ripgrep-{version}-armv7-unknown-linux-musleabihf.tar.gz",
+        "id": "ripgrep-{app_version}-armv7-unknown-linux-musleabihf.tar.gz",
         "target_triple": "armv7-unknown-linux-musleabihf",
         "checksum": "0332b481aa007969a54d5c19e793208e73405c48d38f226bdee56b9ed085cdde"
       },
       {
-        "id": "ripgrep-{version}-i686-pc-windows-msvc.zip",
+        "id": "ripgrep-{app_version}-i686-pc-windows-msvc.zip",
         "target_triple": "i686-pc-windows-msvc",
         "checksum": "9bf73bdb3fda9ad4b0235e1295b02c717031c986afa4d7c05dd0af8b74010a95"
       },
       {
-        "id": "ripgrep-{version}-s390x-unknown-linux-gnu.tar.gz",
+        "id": "ripgrep-{app_version}-s390x-unknown-linux-gnu.tar.gz",
         "target_triple": "s390x-unknown-linux-gnu",
         "checksum": "b61a442344f0591321960def6adb8c828b68a448301d1ed93959656fcd3b79c2"
       },
       {
-        "id": "ripgrep-{version}-x86_64-apple-darwin.tar.gz",
+        "id": "ripgrep-{app_version}-x86_64-apple-darwin.tar.gz",
         "target_triple": "x86_64-apple-darwin",
         "checksum": "af7825fcc69a2afc7a7aea55fc9af90e26421d8f20fe59df32e233c0b8a231c1"
       },
       {
-        "id": "ripgrep-{version}-x86_64-pc-windows-gnu.zip",
+        "id": "ripgrep-{app_version}-x86_64-pc-windows-gnu.zip",
         "target_triple": "x86_64-pc-windows-gnu",
         "checksum": "5dbdc225a3ce064314fc05b6de8423a08a7b681764c1a276ff8263feaf68c7d6"
       },
       {
-        "id": "ripgrep-{version}-x86_64-pc-windows-msvc.zip",
+        "id": "ripgrep-{app_version}-x86_64-pc-windows-msvc.zip",
         "target_triple": "x86_64-pc-windows-msvc",
         "checksum": "71b2fef860abe467217a538ff31de02f5258807c0129f771846f87bd029aafc5"
       },
       {
-        "id": "ripgrep-{version}-x86_64-unknown-linux-musl.tar.gz",
+        "id": "ripgrep-{app_version}-x86_64-unknown-linux-musl.tar.gz",
         "target_triple": "x86_64-unknown-linux-musl",
         "checksum": "33e15bcf1624b25cdd2a55813a47a2f95dbe126268203e76aa6a585d1e7b149c"
       }

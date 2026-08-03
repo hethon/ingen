@@ -4,8 +4,8 @@
   "app_name": "caddy",
   "owner": "caddyserver",
   "repo": "caddy",
-  "version": "2.11.4",
-  "tag": "v{version}",
+  "app_version": "2.11.4",
+  "tag": "v{app_version}",
   "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
   "hosting": {
     "github": {
@@ -30,82 +30,82 @@
   "platform_support": {
     "archives": [
       {
-        "id": "caddy_{version}_freebsd_amd64.tar.gz",
+        "id": "caddy_{app_version}_freebsd_amd64.tar.gz",
         "target_triple": "x86_64-unknown-freebsd",
         "checksum": "b8bf851214f948788a14956b1edab14e21ec69109728b594d07c4149d09711ea"
       },
       {
-        "id": "caddy_{version}_freebsd_arm64.tar.gz",
+        "id": "caddy_{app_version}_freebsd_arm64.tar.gz",
         "target_triple": "aarch64-unknown-freebsd",
         "checksum": "33c568ce3040a103879cbf8bb16785b4ffb71f0deb07e702458eb27fd656ed01"
       },
       {
-        "id": "caddy_{version}_freebsd_armv6.tar.gz",
+        "id": "caddy_{app_version}_freebsd_armv6.tar.gz",
         "target_triple": "arm-unknown-freebsd",
         "checksum": "d67bde4f9080a54becf6e4733d49197db09790cdabf07bfa1145be2ea960ee33"
       },
       {
-        "id": "caddy_{version}_freebsd_armv7.tar.gz",
+        "id": "caddy_{app_version}_freebsd_armv7.tar.gz",
         "target_triple": "armv7-unknown-freebsd",
         "checksum": "dca0b0f44d08509bdc2797cfaaf33d6db26dfe493d4dd623e78bcd46c40a4d9d"
       },
       {
-        "id": "caddy_{version}_linux_amd64.tar.gz",
+        "id": "caddy_{app_version}_linux_amd64.tar.gz",
         "target_triple": "x86_64-unknown-linux-musl",
         "checksum": "527fbf917c39189a1e3b31d34fa955601680b2d5c8055d2a87b8b9588dec7bb9"
       },
       {
-        "id": "caddy_{version}_linux_arm64.tar.gz",
+        "id": "caddy_{app_version}_linux_arm64.tar.gz",
         "target_triple": "aarch64-unknown-linux-musl",
         "checksum": "52d42ae12b3462097e9868da6dfed3c9648ae12edd3b3638102312af84cb6904"
       },
       {
-        "id": "caddy_{version}_linux_armv5.tar.gz",
+        "id": "caddy_{app_version}_linux_armv5.tar.gz",
         "target_triple": "armv5te-unknown-linux-musleabi",
         "checksum": "2cb34c2e47774c5a8a137ca258523242e185652d3c121b0f69e2cef0f9c4514a"
       },
       {
-        "id": "caddy_{version}_linux_armv6.tar.gz",
+        "id": "caddy_{app_version}_linux_armv6.tar.gz",
         "target_triple": "arm-unknown-linux-musleabihf",
         "checksum": "24ed7d2c7dad8d9e57499c1004bd45909de5ca0683b38b22ae6fec80c4b80e92"
       },
       {
-        "id": "caddy_{version}_linux_armv7.tar.gz",
+        "id": "caddy_{app_version}_linux_armv7.tar.gz",
         "target_triple": "armv7-unknown-linux-musleabihf",
         "checksum": "caa71eb180cf6f1f55b37a6c5a364d5cdca6c90f5473de9eb97b1df456184f42"
       },
       {
-        "id": "caddy_{version}_linux_ppc64le.tar.gz",
+        "id": "caddy_{app_version}_linux_ppc64le.tar.gz",
         "target_triple": "powerpc64le-unknown-linux-musl",
         "checksum": "34a99f9c7f45ce0a881a5d50b3f45504e2165055c630c29059129401a8d2b8fd"
       },
       {
-        "id": "caddy_{version}_linux_riscv64.tar.gz",
+        "id": "caddy_{app_version}_linux_riscv64.tar.gz",
         "target_triple": "riscv64gc-unknown-linux-musl",
         "checksum": "3bb7545503bb294785717d5faaeadba3c0c99869940d77d193efca5c0c2dc365"
       },
       {
-        "id": "caddy_{version}_linux_s390x.tar.gz",
+        "id": "caddy_{app_version}_linux_s390x.tar.gz",
         "target_triple": "s390x-unknown-linux-musl",
         "checksum": "730ef4430d40e23e222e370f6c76b48940c716c9eaaa3352b08c4c833d42b736"
       },
       {
-        "id": "caddy_{version}_mac_amd64.tar.gz",
+        "id": "caddy_{app_version}_mac_amd64.tar.gz",
         "target_triple": "x86_64-apple-darwin",
         "checksum": "34bc9e5cceee8d67844ef51da624f5b79e8d070f27236e050c3f0066a2dba534"
       },
       {
-        "id": "caddy_{version}_mac_arm64.tar.gz",
+        "id": "caddy_{app_version}_mac_arm64.tar.gz",
         "target_triple": "aarch64-apple-darwin",
         "checksum": "9efb0af2d6cf09cfb5053c0e51721b9b3d4956d346234f39368d943d25a3c9a7"
       },
       {
-        "id": "caddy_{version}_windows_amd64.zip",
+        "id": "caddy_{app_version}_windows_amd64.zip",
         "target_triple": "x86_64-pc-windows-msvc",
         "checksum": "1708333f79e274c7697285afe6d592ab39314e0b131e9ec6bea08ad27df62ebf"
       },
       {
-        "id": "caddy_{version}_windows_arm64.zip",
+        "id": "caddy_{app_version}_windows_arm64.zip",
         "target_triple": "aarch64-pc-windows-msvc",
         "checksum": "c7f16da93728f61455f77c04eac1ff4de06a38da281ed6d3dcbfae795be2a936"
       }

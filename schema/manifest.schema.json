@@ -6,6 +6,10 @@
       "type": "string",
       "minLength": 1
     },
+    "app_version": {
+      "type": "string",
+      "minLength": 1
+    },
     "base_urls": {
       "minItems": 1,
       "type": "array",
@@ -65,10 +69,6 @@
       "minLength": 1
     },
     "repo": {
-      "type": "string",
-      "minLength": 1
-    },
-    "version": {
       "type": "string",
       "minLength": 1
     },
@@ -259,6 +259,7 @@
   },
   "required": [
     "app_name",
+    "app_version",
     "base_urls",
     "hosting",
     "install_success_msg",
@@ -266,7 +267,6 @@
     "bin_aliases",
     "owner",
     "repo",
-    "version",
     "tag",
     "windows_archive",
     "unix_archive",
