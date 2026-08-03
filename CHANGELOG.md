@@ -1,5 +1,11 @@
 # @hethon/ingen
 
+## 0.1.2
+
+### Patch Changes
+
+- f9dad26: Ensure the package is built before publishing.
+
 ## 0.1.1
 
 ### Patch Changes
