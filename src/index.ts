@@ -19,7 +19,7 @@ const PROVIDER = {
 const cli = cac("ingen");
 
 cli
-  .command("<manifest> [output-dir]", "Generate shell/PowerShell installers")
+  .command("generate <manifest> [output-dir]", "Generate shell/PowerShell installers")
   .action((manifestPath: string, outDirArg: string | undefined) => {
     const outDir = outDirArg ?? "./out";
     const templatesDir = join(__dirname, "..", "templates");

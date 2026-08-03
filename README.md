@@ -27,7 +27,7 @@ This creates an `installer.manifest.json` with valid placeholders and a `$schema
 Edit the manifest to describe your project's release artifacts, then generate installers:
 
 ```sh
-ingen installer.manifest.json ./dist
+ingen generate installer.manifest.json ./dist
 ```
 
 This produces:

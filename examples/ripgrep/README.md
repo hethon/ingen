@@ -7,5 +7,5 @@ This directory contains a sample `ingen` manifest for [ripgrep](https://github.c
 To regenerate the scripts in the `installers/` directory, navigate to this folder and run:
 
 ```bash
-bun run ingen installer.manifest.json installers
+bun run ingen generate installer.manifest.json installers
 ```

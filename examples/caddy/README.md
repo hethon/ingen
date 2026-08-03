@@ -7,7 +7,7 @@ This directory contains a sample `ingen` manifest for [Caddy](https://github.com
 To regenerate the scripts in the `installers/` directory, navigate to this folder and run:
 
 ```bash
-bun run ingen installer.manifest.json installers
+bun run ingen generate installer.manifest.json installers
 ```
 
 ## Manifest Design Notes
