@@ -95,7 +95,7 @@ export const manifestSchema = shContextSchema
     cdylibs: z.array(z.string().min(1)),
     cstaticlibs: z.array(z.string().min(1)),
     checksum_style: checksumSchema.shape.style,
-    min_glibc_version: libcVersionSchema,
+    min_glibc_version: libcVersionSchema.optional(),
 
     platform_support: manifestPlatformSupportSchema,
   });

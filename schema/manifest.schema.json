@@ -274,7 +274,6 @@
     "cdylibs",
     "cstaticlibs",
     "checksum_style",
-    "min_glibc_version",
     "platform_support"
   ],
   "additionalProperties": false

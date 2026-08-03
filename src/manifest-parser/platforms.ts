@@ -72,11 +72,12 @@ export function supports(
     target,
     {
       support_quality: "HostNative",
-      runtime_conditions: isLinuxGnu(target)
-        ? {
-            min_glibc_version: archive.min_glibc_version,
-          }
-        : {},
+      runtime_conditions:
+        archive.min_glibc_version && isLinuxGnu(target)
+          ? {
+              min_glibc_version: archive.min_glibc_version,
+            }
+          : {},
       archive_idx,
       archive_id: archive.id,
     },
