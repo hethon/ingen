@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { cac } from "cac";
 import { ZodError } from "zod";
 import pkg from "../package.json";
+import exampleManifest from "./example.manifest.json";
 import { generate } from "./generate";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -50,42 +51,7 @@ cli.command("init", "Bootstrap a new installer.manifest.json in the current dire
 
   const template = {
     $schema: "https://raw.githubusercontent.com/hethon/ingen/master/schema/manifest.schema.json",
-    app_name: "my-app",
-    version: "0.1.0",
-    owner: "my-org",
-    repo: "my-app",
-    tag: "v{version}",
-    base_urls: ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
-    hosting: {
-      github: {
-        artifact_download_path: "/{owner}/{repo}/releases/download/{tag}",
-      },
-    },
-    windows_archive: {
-      style: ".zip",
-      layout: "wrapped",
-    },
-    unix_archive: {
-      style: ".tar.gz",
-      layout: "wrapped",
-    },
-    executables: ["my-app"],
-    cdylibs: [],
-    cstaticlibs: [],
-    min_glibc_version: "2.17",
-    checksum_style: "sha256",
-    bin_aliases: {},
-    install_paths: ["~/.local/bin"],
-    install_success_msg: "my-app was successfully installed!",
-    platform_support: {
-      archives: [
-        {
-          id: "my-app-x86_64-unknown-linux-gnu.tar.gz",
-          target_triple: "x86_64-unknown-linux-gnu",
-          checksum: "0000000000000000000000000000000000000000000000000000000000000000",
-        },
-      ],
-    },
+    ...exampleManifest,
   };
 
   // biome-ignore lint/style/useTemplate: intentional
