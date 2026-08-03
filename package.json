@@ -41,7 +41,7 @@
     "pre-push": "bun run check && bun run typecheck && bun test"
   },
   "lint-staged": {
-    "*.{ts,js,json,md}": [
+    "*.{ts,js,json}": [
       "biome check --write"
     ]
   }
