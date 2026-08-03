@@ -1,6 +1,6 @@
 {
   "name": "@hethon/ingen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Installer script generator.",
   "license": "MIT",
   "type": "module",
