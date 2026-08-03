@@ -17,6 +17,7 @@ interface RenderInput {
     source: string;
     version: string;
   };
+  appVersionOverride?: string;
 }
 
 interface RenderOutput {
@@ -40,6 +41,10 @@ function buildEnvironment(templates: RenderInput["templates"]): Environment {
 
 export function render(input: RenderInput): RenderOutput {
   const { $schema: _, ...rawManifestData } = input.rawManifest;
+
+  if (input.appVersionOverride !== undefined) {
+    rawManifestData.app_version = input.appVersionOverride;
+  }
 
   const manifest = manifestSchema.parse(rawManifestData);
 

@@ -20,12 +20,19 @@ const cli = cac("ingen");
 
 cli
   .command("generate <manifest> [output-dir]", "Generate shell/PowerShell installers")
-  .action((manifestPath: string, outDirArg: string | undefined) => {
+  .option("--app-version <version>", "Override the app_version field in the manifest")
+  .action((manifestPath: string, outDirArg: string | undefined, options: { appVersion?: string }) => {
     const outDir = outDirArg ?? "./out";
     const templatesDir = join(__dirname, "..", "templates");
 
     try {
-      generate({ manifestPath, templatesDir, outDir, provider: PROVIDER });
+      generate({
+        manifestPath,
+        templatesDir,
+        outDir,
+        provider: PROVIDER,
+        appVersionOverride: options.appVersion,
+      });
       console.log(`✓ wrote ${outDir}/installer.sh`);
       console.log(`✓ wrote ${outDir}/installer.ps1`);
     } catch (err) {

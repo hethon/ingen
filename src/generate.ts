@@ -10,6 +10,7 @@ interface GenerateOptions {
     source: string;
     version: string;
   };
+  appVersionOverride?: string;
 }
 
 function readJson(path: string): Record<string, unknown> {
@@ -32,6 +33,7 @@ export function generate(opts: GenerateOptions): void {
     rawManifest,
     templates,
     provider: opts.provider,
+    appVersionOverride: opts.appVersionOverride,
   });
 
   const outSh = join(opts.outDir, "installer.sh");
