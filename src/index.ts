@@ -61,8 +61,14 @@ cli.command("init", "Bootstrap a new installer.manifest.json in the current dire
         artifact_download_path: "/{owner}/{repo}/releases/download/{tag}",
       },
     },
-    windows_archive: ".zip",
-    unix_archive: ".tar.gz",
+    windows_archive: {
+      style: ".zip",
+      layout: "wrapped",
+    },
+    unix_archive: {
+      style: ".tar.gz",
+      layout: "wrapped",
+    },
     executables: ["my-app"],
     cdylibs: [],
     cstaticlibs: [],
