@@ -71,3 +71,9 @@ try {
   console.error(`✗ ${err instanceof Error ? err.message : String(err)}`);
   process.exit(1);
 }
+
+if (!cli.matchedCommand) {
+  console.error("✗ Unknown or missing command.\n");
+  cli.outputHelp();
+  process.exit(1);
+}
