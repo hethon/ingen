@@ -26,7 +26,8 @@
     "prepare": "simple-git-hooks",
     "build": "bun build src/index.ts --target=node --outdir=dist --packages=external && bun run scripts/generate-schema.ts",
     "prepack": "bun run build",
-    "update-vendor": "bun run scripts/update-vendor.ts"
+    "update-vendor": "bun run scripts/update-vendor.ts",
+    "schema:check": "bun run scripts/generate-schema.ts && git diff --exit-code schema/manifest.schema.json"
   },
   "dependencies": {
     "cac": "^7.0.0",
@@ -42,7 +43,7 @@
     "typescript": "^5.9.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "bun run lint-staged",
+    "pre-commit": "bun run schema:check && bun run lint-staged",
     "pre-push": "bun run check && bun run typecheck && bun test"
   },
   "lint-staged": {
