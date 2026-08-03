@@ -30,47 +30,47 @@
   "platform_support": {
     "archives": [
       {
-        "id": "tectonic-0.17.0-aarch64-apple-darwin.tar.gz",
+        "id": "tectonic-{version}-aarch64-apple-darwin.tar.gz",
         "target_triple": "aarch64-apple-darwin",
         "checksum": "a3f1cac7c5678f01661a92212f58480ae3b0634115d880dbc59e2953ded45667"
       },
       {
-        "id": "tectonic-0.17.0-aarch64-unknown-linux-musl.tar.gz",
+        "id": "tectonic-{version}-aarch64-unknown-linux-musl.tar.gz",
         "target_triple": "aarch64-unknown-linux-musl",
         "checksum": "b10954a95404f3ab2328d2fa59a5ebab8e657f893fab096f98be8db7c0c979b8"
       },
       {
-        "id": "tectonic-0.17.0-arm-unknown-linux-musleabihf.tar.gz",
+        "id": "tectonic-{version}-arm-unknown-linux-musleabihf.tar.gz",
         "target_triple": "arm-unknown-linux-musleabihf",
         "checksum": "882f5213599931992dfb9f7e1157d3015fd9abd505c68c693b3d6dc20967f7eb"
       },
       {
-        "id": "tectonic-0.17.0-i686-unknown-linux-gnu.tar.gz",
+        "id": "tectonic-{version}-i686-unknown-linux-gnu.tar.gz",
         "target_triple": "i686-unknown-linux-gnu",
         "checksum": "f4c887268be8ce443de7b4ccb67d6978fe40113ae8872310957693bb80d07ff4"
       },
       {
-        "id": "tectonic-0.17.0-x86_64-apple-darwin.tar.gz",
+        "id": "tectonic-{version}-x86_64-apple-darwin.tar.gz",
         "target_triple": "x86_64-apple-darwin",
         "checksum": "7c90ef5b6ddb1eb1937e4337add5237b79338e4b9676459fa91187d24d6cdf80"
       },
       {
-        "id": "tectonic-0.17.0-x86_64-pc-windows-gnu.zip",
+        "id": "tectonic-{version}-x86_64-pc-windows-gnu.zip",
         "target_triple": "x86_64-pc-windows-gnu",
         "checksum": "77a0ebba1cc54f6145dbc27377e253c9fffa07eab7c368ff9ef30c2d05557365"
       },
       {
-        "id": "tectonic-0.17.0-x86_64-pc-windows-msvc.zip",
+        "id": "tectonic-{version}-x86_64-pc-windows-msvc.zip",
         "target_triple": "x86_64-pc-windows-msvc",
         "checksum": "f61ce51f0b0ade1015b7de7ef368541c5424e9756ecbd0d7af97d6d48030845f"
       },
       {
-        "id": "tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz",
+        "id": "tectonic-{version}-x86_64-unknown-linux-gnu.tar.gz",
         "target_triple": "x86_64-unknown-linux-gnu",
         "checksum": "1a715688baf591e650c8aeb160ae934e181685eecbb38b317de30b269ac5d606"
       },
       {
-        "id": "tectonic-0.17.0-x86_64-unknown-linux-musl.tar.gz",
+        "id": "tectonic-{version}-x86_64-unknown-linux-musl.tar.gz",
         "target_triple": "x86_64-unknown-linux-musl",
         "checksum": "8533d07f9ccbd7a65824b9e0459041bca34af1eb33daba48f59215593753a3b7"
       }

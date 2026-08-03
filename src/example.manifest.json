@@ -29,7 +29,7 @@
   "platform_support": {
     "archives": [
       {
-        "id": "my-app-x86_64-unknown-linux-gnu.tar.gz",
+        "id": "my-app-{version}-x86_64-unknown-linux-gnu.tar.gz",
         "target_triple": "x86_64-unknown-linux-gnu",
         "checksum": "0000000000000000000000000000000000000000000000000000000000000000"
       }

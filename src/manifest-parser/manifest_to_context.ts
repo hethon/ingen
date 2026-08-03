@@ -125,6 +125,7 @@ function reconstructPlatformSupport(
     | "unix_archive"
     | "checksum_style"
     | "min_glibc_version"
+    | "version"
   >,
 ): Context["platform_support"] {
   // collect global settings:
@@ -135,6 +136,7 @@ function reconstructPlatformSupport(
   const unixArchiveStyle = manifest.unix_archive.style;
   const checksum_style = manifest.checksum_style;
   const min_glibc_version = manifest.min_glibc_version;
+  const version = manifest.version;
   // ---
 
   const archivesIntermediate = manifest.platform_support.archives.map((archive) => {
@@ -156,7 +158,7 @@ function reconstructPlatformSupport(
     const zip_depth: "0" | "1" = archiveLayout === "wrapped" ? "1" : "0";
 
     return {
-      ...archive,
+      id: substitute(archive.id, { version }),
       target_triple: archive.target_triple,
       checksum: checksum,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
