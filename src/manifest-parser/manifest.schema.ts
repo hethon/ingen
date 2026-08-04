@@ -16,6 +16,9 @@ export const libcVersionSchema = z
 
 const archiveLayoutSchema = z.enum(["flat", "wrapped"]);
 
+const checksumAlgorithms = checksumSchema.shape.style.options;
+const checksumStringRegex = new RegExp(`^(${checksumAlgorithms.join("|")}):[0-9a-fA-F]+$`);
+
 const manifestArchiveSchema = fragmentSchema
   .omit({
     // reason: renamed to target
@@ -29,8 +32,19 @@ const manifestArchiveSchema = fragmentSchema
   })
   .extend({
     target: fragmentSchema.shape.target_triple,
-    checksum_style: checksumSchema.shape.style.optional(),
-    checksum: checksumSchema.shape.value.optional(),
+    checksum: z
+      .string()
+      .regex(checksumStringRegex)
+      .transform((checksum) => {
+        type ChecksumAlgorithm = (typeof checksumAlgorithms)[number];
+        const [style, value] = checksum.split(":", 2) as [ChecksumAlgorithm, string];
+
+        return {
+          style,
+          value,
+        };
+      })
+      .optional(),
     min_glibc_version: libcVersionSchema.optional(),
     layout: archiveLayoutSchema.optional(),
   })
@@ -95,7 +109,6 @@ export const manifestSchema = shContextSchema
     executables: z.array(z.string().min(1)).min(1),
     cdylibs: z.array(z.string().min(1)),
     cstaticlibs: z.array(z.string().min(1)),
-    checksum_style: checksumSchema.shape.style,
     min_glibc_version: libcVersionSchema.optional(),
 
     archives: z.array(manifestArchiveSchema).min(1),

@@ -7,7 +7,6 @@ import { computePlatformSupport } from "./platforms";
 type Context = Ps1Context & ShContext;
 
 type TargetTriplet = Context["platform_support"]["archives"][number]["target_triple"];
-type Checksum = Context["platform_support"]["archives"][number]["checksum"];
 
 function substitute(template: string, vars: Record<string, string>): string {
   let result = template;
@@ -123,7 +122,6 @@ function reconstructPlatformSupport(
     | "cstaticlibs"
     | "windows_archive"
     | "unix_archive"
-    | "checksum_style"
     | "min_glibc_version"
     | "app_version"
   >,
@@ -134,24 +132,12 @@ function reconstructPlatformSupport(
   const cstaticlibs = manifest.cstaticlibs;
   const windowsArchiveStyle = manifest.windows_archive.style;
   const unixArchiveStyle = manifest.unix_archive.style;
-  const checksum_style = manifest.checksum_style;
   const min_glibc_version = manifest.min_glibc_version;
   const app_version = manifest.app_version;
   // ---
 
   const archivesIntermediate = manifest.archives.map((archive) => {
     const isWindows = isWindowsTriple(archive.target);
-
-    // reconstruct checksum
-    let checksum: Checksum;
-    if (archive.checksum) {
-      checksum = {
-        style: archive.checksum_style ?? checksum_style,
-        value: archive.checksum,
-      };
-    } else {
-      checksum = null;
-    }
 
     const archiveLayout =
       archive.layout ?? (isWindows ? manifest.windows_archive.layout : manifest.unix_archive.layout);
@@ -160,7 +146,7 @@ function reconstructPlatformSupport(
     return {
       id: substitute(archive.id, { app_version }),
       target_triple: archive.target,
-      checksum: checksum,
+      checksum: archive.checksum ?? null,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
       cdylibs: archive.cdylibs ?? cdylibs,
       cstaticlibs: archive.cstaticlibs ?? cstaticlibs,

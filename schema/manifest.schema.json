@@ -129,17 +129,6 @@
         "minLength": 1
       }
     },
-    "checksum_style": {
-      "type": "string",
-      "enum": [
-        "sha256",
-        "sha512",
-        "sha3-256",
-        "sha3-512",
-        "blake2s",
-        "blake2b"
-      ]
-    },
     "min_glibc_version": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+$"
@@ -156,7 +145,7 @@
           },
           "checksum": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^(sha256|sha512|sha3-256|sha3-512|blake2s|blake2b):[0-9a-fA-F]+$"
           },
           "executables": {
             "minItems": 1,
@@ -192,17 +181,6 @@
           "target": {
             "type": "string",
             "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
-          },
-          "checksum_style": {
-            "type": "string",
-            "enum": [
-              "sha256",
-              "sha512",
-              "sha3-256",
-              "sha3-512",
-              "blake2s",
-              "blake2b"
-            ]
           },
           "min_glibc_version": {
             "type": "string",
@@ -242,7 +220,6 @@
     "executables",
     "cdylibs",
     "cstaticlibs",
-    "checksum_style",
     "archives"
   ],
   "additionalProperties": false
