@@ -56,6 +56,9 @@ export const manifestSchema = shContextSchema
     // reason: can be derived from archives
     artifacts: true,
 
+    // reason: computed internally from owner, repo and tag
+    hosting: true,
+
     // reason: nearly every field is a fixed sentinel or literal, already
     // pushed down into receiptSchema's own defaults. The two genuinely
     // user-supplied facts it needed (owner, and app_name/version, which

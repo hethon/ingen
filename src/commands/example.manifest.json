@@ -5,11 +5,6 @@
   "repo": "my-app",
   "tag": "v{app_version}",
   "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
-  "hosting": {
-    "github": {
-      "artifact_download_path": "/{owner}/{repo}/releases/download/{tag}"
-    }
-  },
   "windows_archive": {
     "style": ".zip",
     "layout": "flat"

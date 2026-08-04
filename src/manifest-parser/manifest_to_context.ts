@@ -195,7 +195,6 @@ export function resolveManifest(
 
   const vars = { owner: manifest.owner, repo: manifest.repo, tag: resolvedTag };
   const resolvedBaseUrls = substituteAll(manifest.base_urls, vars);
-  const resolvedArtifactDownloadPath = substitute(manifest.hosting.github.artifact_download_path, vars);
 
   const reconstructedPlatformSupport = reconstructPlatformSupport(manifest);
 
@@ -215,7 +214,9 @@ export function resolveManifest(
     app_version: manifest.app_version,
     base_urls: resolvedBaseUrls,
     hosting: {
-      github: { artifact_download_path: resolvedArtifactDownloadPath },
+      github: {
+        artifact_download_path: `/${manifest.owner}/${manifest.repo}/releases/download/${resolvedTag}`,
+      },
     },
     install_success_msg: manifest.install_success_msg,
     install_paths: reconstructInstallPaths(manifest.install_paths),

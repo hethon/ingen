@@ -18,28 +18,6 @@
         "format": "uri"
       }
     },
-    "hosting": {
-      "type": "object",
-      "properties": {
-        "github": {
-          "type": "object",
-          "properties": {
-            "artifact_download_path": {
-              "type": "string",
-              "minLength": 1
-            }
-          },
-          "required": [
-            "artifact_download_path"
-          ],
-          "additionalProperties": false
-        }
-      },
-      "required": [
-        "github"
-      ],
-      "additionalProperties": false
-    },
     "install_success_msg": {
       "type": "string",
       "minLength": 1
@@ -253,7 +231,6 @@
     "app_name",
     "app_version",
     "base_urls",
-    "hosting",
     "install_success_msg",
     "install_paths",
     "bin_aliases",
