@@ -24,7 +24,7 @@
     "format": "biome format --write .",
     "fix": "biome check --write .",
     "prepare": "simple-git-hooks",
-    "build": "bun build src/index.ts --target=node --outdir=dist --packages=external && bun run scripts/generate-schema.ts",
+    "build": "bun build src/index.ts --target=node --outdir=dist --packages=external",
     "prepack": "bun run build",
     "update-vendor": "bun run scripts/update-vendor.ts",
     "schema:check": "bun run scripts/generate-schema.ts && git diff --exit-code schema/manifest.schema.json"
