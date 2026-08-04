@@ -165,93 +165,84 @@
       "type": "string",
       "pattern": "^\\d+\\.\\d+$"
     },
-    "platform_support": {
-      "type": "object",
-      "properties": {
-        "archives": {
-          "minItems": 1,
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string",
-                "minLength": 1
-              },
-              "target_triple": {
-                "type": "string",
-                "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
-              },
-              "checksum": {
-                "type": "string",
-                "minLength": 1
-              },
-              "executables": {
-                "minItems": 1,
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              },
-              "cdylibs": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              },
-              "cstaticlibs": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "minLength": 1
-                }
-              },
-              "zip_style": {
-                "type": "string",
-                "enum": [
-                  ".tar.gz",
-                  ".tar.xz",
-                  ".tar.zst",
-                  ".zip"
-                ]
-              },
-              "checksum_style": {
-                "type": "string",
-                "enum": [
-                  "sha256",
-                  "sha512",
-                  "sha3-256",
-                  "sha3-512",
-                  "blake2s",
-                  "blake2b"
-                ]
-              },
-              "min_glibc_version": {
-                "type": "string",
-                "pattern": "^\\d+\\.\\d+$"
-              },
-              "layout": {
-                "type": "string",
-                "enum": [
-                  "flat",
-                  "wrapped"
-                ]
-              }
-            },
-            "required": [
-              "id",
-              "target_triple"
-            ],
-            "additionalProperties": false
+    "archives": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_triple": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
+          },
+          "checksum": {
+            "type": "string",
+            "minLength": 1
+          },
+          "executables": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "cdylibs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "cstaticlibs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "zip_style": {
+            "type": "string",
+            "enum": [
+              ".tar.gz",
+              ".tar.xz",
+              ".tar.zst",
+              ".zip"
+            ]
+          },
+          "checksum_style": {
+            "type": "string",
+            "enum": [
+              "sha256",
+              "sha512",
+              "sha3-256",
+              "sha3-512",
+              "blake2s",
+              "blake2b"
+            ]
+          },
+          "min_glibc_version": {
+            "type": "string",
+            "pattern": "^\\d+\\.\\d+$"
+          },
+          "layout": {
+            "type": "string",
+            "enum": [
+              "flat",
+              "wrapped"
+            ]
           }
-        }
-      },
-      "required": [
-        "archives"
-      ],
-      "additionalProperties": false
+        },
+        "required": [
+          "id",
+          "target_triple"
+        ],
+        "additionalProperties": false
+      }
     },
     "$schema": {
       "type": "string"
@@ -274,7 +265,7 @@
     "cdylibs",
     "cstaticlibs",
     "checksum_style",
-    "platform_support"
+    "archives"
   ],
   "additionalProperties": false
 }

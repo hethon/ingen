@@ -37,10 +37,6 @@ const manifestArchiveSchema = fragmentSchema
     zip_style: true,
   });
 
-const manifestPlatformSupportSchema = z.strictObject({
-  archives: z.array(manifestArchiveSchema).min(1),
-});
-
 const manifestInstallPathStringSchema = z
   .string()
   .min(1)
@@ -51,7 +47,7 @@ const manifestInstallPathStringSchema = z
 
 export const manifestSchema = shContextSchema
   .omit({
-    // reason: can be derived from platform_support
+    // reason: can be derived from archives
     artifacts: true,
 
     // reason: nearly every field is a fixed sentinel or literal, already
@@ -61,13 +57,13 @@ export const manifestSchema = shContextSchema
     // added below.
     receipt: true,
 
-    // reason: can be derived from platform_support from cdylibs/cstaticlibs
+    // reason: can be derived from cdylibs/cstaticlibs of archives
     install_libraries: true,
 
     // reason: can be derived from app_name
     env_vars: true,
 
-    // reason: replaced below, same field name, new shape
+    // reason: can be derived from archives
     platform_support: true,
   })
   .extend({
@@ -93,7 +89,7 @@ export const manifestSchema = shContextSchema
     checksum_style: checksumSchema.shape.style,
     min_glibc_version: libcVersionSchema.optional(),
 
-    platform_support: manifestPlatformSupportSchema,
+    archives: z.array(manifestArchiveSchema).min(1),
   });
 
 export type Manifest = z.output<typeof manifestSchema>;

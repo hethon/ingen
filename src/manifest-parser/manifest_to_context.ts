@@ -117,7 +117,7 @@ function computeFragments(platformSupport: Context["platform_support"]): Fragmen
 function reconstructPlatformSupport(
   manifest: Pick<
     Manifest,
-    | "platform_support"
+    | "archives"
     | "executables"
     | "cdylibs"
     | "cstaticlibs"
@@ -139,7 +139,7 @@ function reconstructPlatformSupport(
   const app_version = manifest.app_version;
   // ---
 
-  const archivesIntermediate = manifest.platform_support.archives.map((archive) => {
+  const archivesIntermediate = manifest.archives.map((archive) => {
     const isWindows = isWindowsTriple(archive.target_triple);
 
     // reconstruct checksum

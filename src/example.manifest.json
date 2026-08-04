@@ -26,13 +26,11 @@
   "bin_aliases": {},
   "install_paths": ["~/.local/bin"],
   "install_success_msg": "my-app was successfully installed!",
-  "platform_support": {
-    "archives": [
-      {
-        "id": "my-app-{app_version}-x86_64-unknown-linux-gnu.tar.gz",
-        "target_triple": "x86_64-unknown-linux-gnu",
-        "checksum": "0000000000000000000000000000000000000000000000000000000000000000"
-      }
-    ]
-  }
+  "archives": [
+    {
+      "id": "my-app-{app_version}-x86_64-unknown-linux-gnu.tar.gz",
+      "target_triple": "x86_64-unknown-linux-gnu",
+      "checksum": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
 }
