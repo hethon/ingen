@@ -41,11 +41,13 @@ const manifestArchiveSchema = fragmentSchema
     zip_style: true,
   });
 
+const INSTALL_PATH_REGEX = /^(~\/.*|\$[A-Za-z_][A-Za-z0-9_]*(?:\/.*)?)$/;
+
 const manifestInstallPathStringSchema = z
   .string()
   .min(1)
-  .refine(
-    (s) => s.startsWith("~/") || s.startsWith("$") || s === "~",
+  .regex(
+    INSTALL_PATH_REGEX,
     'install path must start with "~/" (home-relative) or "$VAR" (env-var-relative)',
   );
 
