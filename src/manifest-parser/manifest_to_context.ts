@@ -140,7 +140,7 @@ function reconstructPlatformSupport(
   // ---
 
   const archivesIntermediate = manifest.archives.map((archive) => {
-    const isWindows = isWindowsTriple(archive.target_triple);
+    const isWindows = isWindowsTriple(archive.target);
 
     // reconstruct checksum
     let checksum: Checksum;
@@ -159,7 +159,7 @@ function reconstructPlatformSupport(
 
     return {
       id: substitute(archive.id, { app_version }),
-      target_triple: archive.target_triple,
+      target_triple: archive.target,
       checksum: checksum,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
       cdylibs: archive.cdylibs ?? cdylibs,

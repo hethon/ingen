@@ -175,10 +175,6 @@
             "type": "string",
             "minLength": 1
           },
-          "target_triple": {
-            "type": "string",
-            "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
-          },
           "checksum": {
             "type": "string",
             "minLength": 1
@@ -214,6 +210,10 @@
               ".zip"
             ]
           },
+          "target": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
+          },
           "checksum_style": {
             "type": "string",
             "enum": [
@@ -239,7 +239,7 @@
         },
         "required": [
           "id",
-          "target_triple"
+          "target"
         ],
         "additionalProperties": false
       }

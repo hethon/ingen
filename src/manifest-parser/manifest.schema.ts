@@ -18,6 +18,9 @@ const archiveLayoutSchema = z.enum(["flat", "wrapped"]);
 
 const manifestArchiveSchema = fragmentSchema
   .omit({
+    // reason: renamed to target
+    target_triple: true,
+
     // reason: will be derived from "layout"
     zip_depth: true,
     // reason: no updater support; always a schema-level literal
@@ -25,6 +28,7 @@ const manifestArchiveSchema = fragmentSchema
     updater: true,
   })
   .extend({
+    target: fragmentSchema.shape.target_triple,
     checksum_style: checksumSchema.shape.style.optional(),
     checksum: checksumSchema.shape.value.optional(),
     min_glibc_version: libcVersionSchema.optional(),

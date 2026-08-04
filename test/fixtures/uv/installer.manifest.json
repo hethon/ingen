@@ -34,97 +34,97 @@
   "archives": [
     {
       "id": "uv-aarch64-apple-darwin.tar.gz",
-      "target_triple": "aarch64-apple-darwin",
+      "target": "aarch64-apple-darwin",
       "checksum": "b2b93e82a6786f9c7cb89fd4ca0e859a147b292ae8f6f95784f9742f0efec39e"
     },
     {
       "id": "uv-aarch64-pc-windows-msvc.zip",
-      "target_triple": "aarch64-pc-windows-msvc",
+      "target": "aarch64-pc-windows-msvc",
       "executables": ["uv.exe", "uvx.exe", "uvw.exe"],
       "checksum": "060da44c6474680ce9ed31f866a496cb06979dbea86de8fe24e0f22c48ac992b"
     },
     {
       "id": "uv-aarch64-unknown-linux-gnu.tar.gz",
-      "target_triple": "aarch64-unknown-linux-gnu",
+      "target": "aarch64-unknown-linux-gnu",
       "min_glibc_version": "2.28",
       "checksum": "d74f23949fd07be4970f293d06ca99d87cd2a78a341c3d7b7fc0df7bc2d8a145"
     },
     {
       "id": "uv-aarch64-unknown-linux-musl.tar.gz",
-      "target_triple": "aarch64-unknown-linux-musl",
+      "target": "aarch64-unknown-linux-musl",
       "checksum": "49cb5ffce40cc9c85355caa8104f7b61c40a8daac7334f4bc841cad1a7bb359e"
     },
     {
       "id": "uv-arm-unknown-linux-musleabihf.tar.gz",
-      "target_triple": "arm-unknown-linux-musleabihf",
+      "target": "arm-unknown-linux-musleabihf",
       "checksum": "0f71f9f2b37d1f82dd225662b3ecb10c3ff114a5828819173015dbc86d2fa0dd"
     },
     {
       "id": "uv-armv7-unknown-linux-gnueabihf.tar.gz",
-      "target_triple": "armv7-unknown-linux-gnueabihf",
+      "target": "armv7-unknown-linux-gnueabihf",
       "checksum": "de23124095c4df154d3807495b59f1985d8d9460bd70d3de61fef2034756bd61"
     },
     {
       "id": "uv-armv7-unknown-linux-musleabihf.tar.gz",
-      "target_triple": "armv7-unknown-linux-musleabihf",
+      "target": "armv7-unknown-linux-musleabihf",
       "checksum": "9cb5373c1c2e6939077dcc60723a79dc348dd3c9942f2559d19696d16ac34990"
     },
     {
       "id": "uv-i686-pc-windows-msvc.zip",
-      "target_triple": "i686-pc-windows-msvc",
+      "target": "i686-pc-windows-msvc",
       "executables": ["uv.exe", "uvx.exe", "uvw.exe"],
       "checksum": "4b4d07862b81275ea1a507d5e80774b0f38502493f854cbb585a987c0155d627"
     },
     {
       "id": "uv-i686-unknown-linux-gnu.tar.gz",
-      "target_triple": "i686-unknown-linux-gnu",
+      "target": "i686-unknown-linux-gnu",
       "checksum": "85c71ad3f7c189e77bef0d94bcc3c1cbf8792695efe616dec86a389fbb1ee72b"
     },
     {
       "id": "uv-i686-unknown-linux-musl.tar.gz",
-      "target_triple": "i686-unknown-linux-musl",
+      "target": "i686-unknown-linux-musl",
       "checksum": "160a9e19934879492f5b92c8eb132b39ee19858a406c9f3224c05c7b7cd70e59"
     },
     {
       "id": "uv-powerpc64le-unknown-linux-gnu.tar.gz",
-      "target_triple": "powerpc64le-unknown-linux-gnu",
+      "target": "powerpc64le-unknown-linux-gnu",
       "checksum": "43e21695092a3c58aa3d364c139bbeab838baba662f0e9f37aa78e52305289e3"
     },
     {
       "id": "uv-riscv64gc-unknown-linux-gnu.tar.gz",
-      "target_triple": "riscv64gc-unknown-linux-gnu",
+      "target": "riscv64gc-unknown-linux-gnu",
       "min_glibc_version": "2.31",
       "checksum": "7fa2c496e1ca94c7bcfcc9361f7928c4126d63fc4588dee4c8a2465332b60636"
     },
     {
       "id": "uv-riscv64gc-unknown-linux-musl.tar.gz",
-      "target_triple": "riscv64gc-unknown-linux-musl",
+      "target": "riscv64gc-unknown-linux-musl",
       "checksum": "b300fe07dd1fb98e8608277d7b822ff637e25ee839674645f7ddcbc42199a39b"
     },
     {
       "id": "uv-s390x-unknown-linux-gnu.tar.gz",
-      "target_triple": "s390x-unknown-linux-gnu",
+      "target": "s390x-unknown-linux-gnu",
       "checksum": "42114face40b846720980dc3f6e2c1b4676d8bf56c8c551586b249be9137cb84"
     },
     {
       "id": "uv-x86_64-apple-darwin.tar.gz",
-      "target_triple": "x86_64-apple-darwin",
+      "target": "x86_64-apple-darwin",
       "checksum": "33ee6bd62b57fcd77a499deb54e4432dc1e1a2f3d34930ba987ad8b43f9c7bc7"
     },
     {
       "id": "uv-x86_64-pc-windows-msvc.zip",
-      "target_triple": "x86_64-pc-windows-msvc",
+      "target": "x86_64-pc-windows-msvc",
       "executables": ["uv.exe", "uvx.exe", "uvw.exe"],
       "checksum": "410c2fd3126ff621c9450a21cfc200002c7540dc48d130069a8f619cdb0a811b"
     },
     {
       "id": "uv-x86_64-unknown-linux-gnu.tar.gz",
-      "target_triple": "x86_64-unknown-linux-gnu",
+      "target": "x86_64-unknown-linux-gnu",
       "checksum": "8cc1cd82d434ec565376f98bd938d4b715b5791a80ff2d3aa78821cf85091b4b"
     },
     {
       "id": "uv-x86_64-unknown-linux-musl.tar.gz",
-      "target_triple": "x86_64-unknown-linux-musl",
+      "target": "x86_64-unknown-linux-musl",
       "checksum": "89048b7e30a6c459fa7e8f2e91cfdc413dc004dcbddc6c2af5e09df123e3246d"
     }
   ]
