@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import exampleManifest from "../src/example.manifest.json";
+import exampleManifest from "../src/commands/example.manifest.json";
 import { manifestSchema } from "../src/manifest-parser/manifest.schema";
 
 const EXAMPLES_DIR = join(__dirname, "..", "examples");
