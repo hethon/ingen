@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${TECTONIC_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"tectonic","name":"tectonic","owner":"tectonic-typesetting","release_type":"github"},"version":"0.17.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.2.0"},"source":{"app_name":"tectonic","name":"tectonic","owner":"tectonic-typesetting","release_type":"github"},"version":"0.17.0"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME
@@ -771,9 +771,6 @@ select_archive_for_arch() {
             ;;
         "i686-unknown-linux-gnu")
             _archive="tectonic-0.17.0-i686-unknown-linux-gnu.tar.gz"
-            if ! check_glibc "2" "17"; then
-                _archive=""
-            fi
             if [ -n "$_archive" ]; then
                 echo "$_archive"
                 return 0
@@ -807,9 +804,6 @@ select_archive_for_arch() {
             ;;
         "x86_64-unknown-linux-gnu")
             _archive="tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz"
-            if ! check_glibc "2" "17"; then
-                _archive=""
-            fi
             if [ -n "$_archive" ]; then
                 echo "$_archive"
                 return 0

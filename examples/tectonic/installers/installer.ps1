@@ -54,7 +54,7 @@ if ($env:TECTONIC_DOWNLOAD_URL) {
 $auth_token = $env:TECTONIC_GITHUB_TOKEN
 
 $receipt = @"
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"tectonic","name":"tectonic","owner":"tectonic-typesetting","release_type":"github"},"version":"0.17.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.2.0"},"source":{"app_name":"tectonic","name":"tectonic","owner":"tectonic-typesetting","release_type":"github"},"version":"0.17.0"}
 "@
 if ($env:XDG_CONFIG_HOME) {
   $receipt_home = "${env:XDG_CONFIG_HOME}\tectonic"

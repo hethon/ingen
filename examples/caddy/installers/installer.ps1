@@ -54,7 +54,7 @@ if ($env:CADDY_DOWNLOAD_URL) {
 $auth_token = $env:CADDY_GITHUB_TOKEN
 
 $receipt = @"
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"caddy","name":"caddy","owner":"caddyserver","release_type":"github"},"version":"2.11.4"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.2.0"},"source":{"app_name":"caddy","name":"caddy","owner":"caddyserver","release_type":"github"},"version":"2.11.4"}
 "@
 if ($env:XDG_CONFIG_HOME) {
   $receipt_home = "${env:XDG_CONFIG_HOME}\caddy"

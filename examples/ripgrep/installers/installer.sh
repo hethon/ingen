@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${RIPGREP_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.1.0"},"source":{"app_name":"ripgrep","name":"ripgrep","owner":"BurntSushi","release_type":"github"},"version":"15.2.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.2.0"},"source":{"app_name":"ripgrep","name":"ripgrep","owner":"BurntSushi","release_type":"github"},"version":"15.2.0"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME
@@ -782,9 +782,6 @@ select_archive_for_arch() {
             ;;
         "aarch64-unknown-linux-gnu")
             _archive="ripgrep-15.2.0-aarch64-unknown-linux-gnu.tar.gz"
-            if ! check_glibc "2" "17"; then
-                _archive=""
-            fi
             if [ -n "$_archive" ]; then
                 echo "$_archive"
                 return 0
@@ -811,9 +808,6 @@ select_archive_for_arch() {
             ;;
         "armv7-unknown-linux-gnueabihf")
             _archive="ripgrep-15.2.0-armv7-unknown-linux-gnueabihf.tar.gz"
-            if ! check_glibc "2" "17"; then
-                _archive=""
-            fi
             if [ -n "$_archive" ]; then
                 echo "$_archive"
                 return 0
@@ -861,9 +855,6 @@ select_archive_for_arch() {
             ;;
         "s390x-unknown-linux-gnu")
             _archive="ripgrep-15.2.0-s390x-unknown-linux-gnu.tar.gz"
-            if ! check_glibc "2" "17"; then
-                _archive=""
-            fi
             if [ -n "$_archive" ]; then
                 echo "$_archive"
                 return 0
