@@ -69,7 +69,7 @@ export function registerSyncCommand(cli: CAC) {
           continue;
         }
 
-        if (archive.checksum?.value === checksum) {
+        if (archive.checksum && `${archive.checksum.style}:${archive.checksum.value}` === checksum) {
           unchanged++;
           continue;
         }
