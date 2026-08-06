@@ -1,6 +1,6 @@
 import { Environment } from "minijinja-js";
 import { manifestSchema } from "./manifest-parser/manifest.schema";
-import { resolveManifest } from "./manifest-parser/manifest_to_context";
+import { reconstructContext } from "./manifest-parser/manifest_to_context";
 import { ps1ContextSchema } from "./template-context/ps1_context.schema";
 import { shContextSchema } from "./template-context/sh_context.schema";
 
@@ -48,8 +48,8 @@ export function render(input: RenderInput): RenderOutput {
 
   const manifest = manifestSchema.parse(rawManifestData);
 
-  const shContextRaw = resolveManifest(manifest, "sh", input.provider);
-  const ps1ContextRaw = resolveManifest(manifest, "ps1", input.provider);
+  const shContextRaw = reconstructContext(manifest, "sh", input.provider);
+  const ps1ContextRaw = reconstructContext(manifest, "ps1", input.provider);
 
   const shContext = shContextSchema.parse(shContextRaw);
   const ps1Context = ps1ContextSchema.parse(ps1ContextRaw);

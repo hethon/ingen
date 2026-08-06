@@ -133,7 +133,6 @@ function reconstructPlatformSupport(
   const windowsArchiveStyle = manifest.windows_archive.style;
   const unixArchiveStyle = manifest.unix_archive.style;
   const min_glibc_version = manifest.min_glibc_version;
-  const app_version = manifest.app_version;
   // ---
 
   const archivesIntermediate = manifest.archives.map((archive) => {
@@ -144,7 +143,7 @@ function reconstructPlatformSupport(
     const zip_depth: "0" | "1" = archiveLayout === "wrapped" ? "1" : "0";
 
     return {
-      id: substitute(archive.id, { app_version }),
+      id: archive.id,
       target_triple: archive.target,
       checksum: archive.checksum ?? null,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
@@ -165,22 +164,38 @@ function reconstructPlatformSupport(
   };
 }
 
+// Resolve all the placeholder tokens in the fields of manifest
+export function resolveManifest(manifest: Manifest): void {
+  const app_version = manifest.app_version;
+
+  const resolvedTag = substitute(manifest.tag, { app_version });
+  manifest.tag = resolvedTag;
+
+  manifest.base_urls = substituteAll(manifest.base_urls, {
+    owner: manifest.owner,
+    repo: manifest.repo,
+    tag: resolvedTag,
+  });
+
+  manifest.archives = manifest.archives.map(({ id, ...rest }) => ({
+    id: substitute(id, { app_version }),
+    ...rest,
+  }));
+}
+
 /**
  * Takes the validated user-facing manifest and resolves it into the
  * fully-expanded shape shContextSchema/ps1ContextSchema expect.
  */
 type Provider = Context["receipt"]["provider"];
-export function resolveManifest(manifest: Manifest, target: "sh", provider: Provider): ShContext;
-export function resolveManifest(manifest: Manifest, target: "ps1", provider: Provider): Ps1Context;
-export function resolveManifest(
+export function reconstructContext(manifest: Manifest, target: "sh", provider: Provider): ShContext;
+export function reconstructContext(manifest: Manifest, target: "ps1", provider: Provider): Ps1Context;
+export function reconstructContext(
   manifest: Manifest,
   target: "sh" | "ps1",
   provider: Provider,
 ): ShContext | Ps1Context {
-  const resolvedTag = substitute(manifest.tag, { app_version: manifest.app_version });
-
-  const vars = { owner: manifest.owner, repo: manifest.repo, tag: resolvedTag };
-  const resolvedBaseUrls = substituteAll(manifest.base_urls, vars);
+  resolveManifest(manifest);
 
   const reconstructedPlatformSupport = reconstructPlatformSupport(manifest);
 
@@ -198,10 +213,10 @@ export function resolveManifest(
   const common = {
     app_name: manifest.app_name,
     app_version: manifest.app_version,
-    base_urls: resolvedBaseUrls,
+    base_urls: manifest.base_urls,
     hosting: {
       github: {
-        artifact_download_path: `/${manifest.owner}/${manifest.repo}/releases/download/${resolvedTag}`,
+        artifact_download_path: `/${manifest.owner}/${manifest.repo}/releases/download/${manifest.tag}`,
       },
     },
     install_success_msg: manifest.install_success_msg,

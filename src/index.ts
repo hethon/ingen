@@ -1,9 +1,11 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { cac } from "cac";
+import { ZodError } from "zod";
 import pkg from "../package.json";
 import { registerGenerateCommand } from "./commands/generate";
 import { registerInitCommand } from "./commands/init";
+import { registerSyncCommand } from "./commands/sync";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -17,16 +19,23 @@ const cli = cac("ingen");
 const templatesDir = join(__dirname, "..", "templates");
 registerGenerateCommand(cli, PROVIDER, templatesDir);
 registerInitCommand(cli);
+registerSyncCommand(cli);
 
 cli.help();
 cli.version(pkg.version);
 
 try {
-  cli.parse();
+  cli.parse(process.argv, { run: false });
+  await cli.runMatchedCommand();
 } catch (err) {
-  // CAC throws if a required argument (like <manifest>) is missing.
-  // We catch it here to print a clean error instead of a stack trace.
-  console.error(`✗ ${err instanceof Error ? err.message : String(err)}`);
+  if (err instanceof ZodError) {
+    console.error("✗ invalid manifest:\n");
+    for (const issue of err.issues) {
+      console.error(`  - ${issue.path.join(".") || "(root)"}: ${issue.message}`);
+    }
+  } else {
+    console.error(`✗ ${err instanceof Error ? err.message : String(err)}`);
+  }
   process.exit(1);
 }
 

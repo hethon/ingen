@@ -1,5 +1,4 @@
 import type { CAC } from "cac";
-import { ZodError } from "zod";
 import { generate } from "../generate";
 
 export function registerGenerateCommand(
@@ -13,26 +12,14 @@ export function registerGenerateCommand(
     .action((manifestPath: string, outDirArg: string | undefined, options: { appVersion?: string }) => {
       const outDir = outDirArg ?? "./out";
 
-      try {
-        generate({
-          manifestPath,
-          templatesDir,
-          outDir,
-          provider,
-          appVersionOverride: options.appVersion,
-        });
-        console.log(`✓ wrote ${outDir}/installer.sh`);
-        console.log(`✓ wrote ${outDir}/installer.ps1`);
-      } catch (err) {
-        if (err instanceof ZodError) {
-          console.error("✗ invalid manifest:\n");
-          for (const issue of err.issues) {
-            console.error(`  - ${issue.path.join(".") || "(root)"}: ${issue.message}`);
-          }
-          process.exit(1);
-        }
-        console.error(`✗ ${err instanceof Error ? err.message : String(err)}`);
-        process.exit(1);
-      }
+      generate({
+        manifestPath,
+        templatesDir,
+        outDir,
+        provider,
+        appVersionOverride: options.appVersion,
+      });
+      console.log(`✓ wrote ${outDir}/installer.sh`);
+      console.log(`✓ wrote ${outDir}/installer.ps1`);
     });
 }
