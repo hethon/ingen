@@ -1,7 +1,7 @@
 import type { Fragment } from "../template-context/common_context.schema";
 import type { Ps1Context } from "../template-context/ps1_context.schema";
 import type { ShContext } from "../template-context/sh_context.schema";
-import { checksumStringToChecksumObj, type Manifest } from "./manifest.schema";
+import type { Manifest } from "./manifest.schema";
 import { computePlatformSupport } from "./platforms";
 
 type Context = Ps1Context & ShContext;
@@ -145,7 +145,7 @@ function reconstructPlatformSupport(
     return {
       id: archive.id,
       target_triple: archive.target,
-      checksum: archive.checksum ? checksumStringToChecksumObj.parse(archive.checksum) : null,
+      checksum: archive.checksum ?? null,
       executables: archive.executables ?? (isWindows ? executables.map((n) => `${n}.exe`) : executables),
       cdylibs: archive.cdylibs ?? cdylibs,
       cstaticlibs: archive.cstaticlibs ?? cstaticlibs,
