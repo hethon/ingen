@@ -54,7 +54,7 @@ export function registerSyncCommand(cli: CAC) {
         release.assets.filter((asset) => asset.digest).map((asset) => [asset.name, asset.digest]),
       );
 
-      const edits = [];
+      let updatedSource = source;
 
       let updated = 0;
       let unchanged = 0;
@@ -74,7 +74,10 @@ export function registerSyncCommand(cli: CAC) {
           continue;
         }
 
-        edits.push(...modify(source, ["archives", idx, "checksum"], checksum, { formattingOptions }));
+        updatedSource = applyEdits(
+          updatedSource,
+          modify(updatedSource, ["archives", idx, "checksum"], checksum, { formattingOptions }),
+        );
 
         updated++;
 
@@ -82,7 +85,7 @@ export function registerSyncCommand(cli: CAC) {
       }
 
       if (updated > 0) {
-        writeFileSync(manifestPath, applyEdits(source, edits));
+        writeFileSync(manifestPath, updatedSource);
       }
 
       console.log("");
