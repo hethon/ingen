@@ -16,7 +16,7 @@ const githubReleaseSchema = z.object({
 
 const formattingOptions = {
   insertSpaces: true,
-  tabSize: 4,
+  tabSize: 2,
 };
 
 export function registerSyncCommand(cli: CAC) {
