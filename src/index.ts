@@ -24,6 +24,11 @@ registerSyncCommand(cli);
 cli.help();
 cli.version(pkg.version);
 
+cli.addEventListener("command:*", () => {
+  console.error(`✗ Unknown command: ${cli.args.join(" ")}`);
+  process.exit(1);
+});
+
 try {
   cli.parse(process.argv, { run: false });
   await cli.runMatchedCommand();
@@ -36,11 +41,5 @@ try {
   } else {
     console.error(`✗ ${err instanceof Error ? err.message : String(err)}`);
   }
-  process.exit(1);
-}
-
-if (!cli.matchedCommand) {
-  console.error("✗ Unknown or missing command.\n");
-  cli.outputHelp();
   process.exit(1);
 }
