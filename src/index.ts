@@ -5,6 +5,7 @@ import { ZodError } from "zod";
 import pkg from "../package.json";
 import { registerGenerateCommand } from "./commands/generate";
 import { registerInitCommand } from "./commands/init";
+import { registerSyncCommand } from "./commands/sync";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -18,6 +19,7 @@ const cli = cac("ingen");
 const templatesDir = join(__dirname, "..", "templates");
 registerGenerateCommand(cli, PROVIDER, templatesDir);
 registerInitCommand(cli);
+registerSyncCommand(cli);
 
 cli.help();
 cli.version(pkg.version);
