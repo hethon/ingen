@@ -32,19 +32,7 @@ const manifestArchiveSchema = fragmentSchema
   })
   .extend({
     target: fragmentSchema.shape.target_triple,
-    checksum: z
-      .string()
-      .regex(checksumStringRegex)
-      .transform((checksum) => {
-        type ChecksumAlgorithm = (typeof checksumAlgorithms)[number];
-        const [style, value] = checksum.split(":", 2) as [ChecksumAlgorithm, string];
-
-        return {
-          style,
-          value,
-        };
-      })
-      .optional(),
+    checksum: z.string().regex(checksumStringRegex).optional(),
     min_glibc_version: libcVersionSchema.optional(),
     layout: archiveLayoutSchema.optional(),
   })
@@ -54,6 +42,16 @@ const manifestArchiveSchema = fragmentSchema
     cstaticlibs: true,
     zip_style: true,
   });
+
+export const checksumStringToChecksumObj = z.transform((checksum: string) => {
+  type ChecksumAlgorithm = (typeof checksumAlgorithms)[number];
+  const [style, value] = checksum.split(":", 2) as [ChecksumAlgorithm, string];
+
+  return {
+    style,
+    value,
+  };
+});
 
 const INSTALL_PATH_REGEX = /^(~\/.*|\$[A-Za-z_][A-Za-z0-9_]*(?:\/.*)?)$/;
 
