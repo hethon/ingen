@@ -1,5 +1,5 @@
 {
-  "name": "@hethon/ingen",
+  "name": "ingen-cli",
   "version": "0.2.0",
   "description": "Installer script generator.",
   "license": "MIT",
