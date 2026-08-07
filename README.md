@@ -4,6 +4,12 @@ Generate `curl | sh` and `irm | iex` installers for your project's binary releas
 
 `ingen` takes a small JSON manifest describing your release artifacts and generates portable shell and PowerShell installers.
 
+## Installation
+
+```sh
+npm install --global ingen-cli
+```
+
 ## Why?
 
 One-line installers (`curl | sh` and `irm | iex`) provide a great installation experience for users, but writing and maintaining portable shell and PowerShell installers is surprisingly involved.
@@ -12,7 +18,7 @@ While exploring how to add this kind of installer to a project, I discovered [di
 
 `dist` solves a broader problem than the one I was trying to solve. It provides an opinionated, end-to-end release pipeline that automates building, packaging, publishing, and installer generation. For many projects, that's exactly the right solution.
 
-`ingen` is for the cases where you only want the installer generation. You describe the release artifacts you already produce, and `ingen` generates the same style of shell and PowerShell installers without taking over the rest of your release process.
+`ingen` is for the cases where you only want installer generation. You describe the release artifacts you already produce, and `ingen` generates the same style of shell and PowerShell installers without taking over the rest of your release process.
 
 ## Quick start
 
@@ -24,7 +30,17 @@ ingen init
 
 This creates an `installer.manifest.json` with valid placeholders and a `$schema` reference. Most editors will automatically pick up the schema and provide validation, field suggestions, and documentation as you edit.
 
-Edit the manifest to describe your project's release artifacts, then generate installers:
+Edit the manifest to describe your project's release artifacts.
+
+If you publish releases on GitHub, you can automatically populate or update archive checksums from the release assets:
+
+```sh
+ingen sync installer.manifest.json
+```
+
+`ingen sync` fetches the checksums published by GitHub for each release asset and updates the manifest accordingly.
+
+Once your manifest is ready, generate the installers:
 
 ```sh
 ingen generate installer.manifest.json ./dist
@@ -40,6 +56,7 @@ Upload both files to any location accessible over HTTPS (for example, as assets 
 ```sh
 curl --proto '=https' --tlsv1.2 -LsSf https://example.com/installer.sh | sh
 ```
+
 ```powershell
 powershell -ExecutionPolicy Bypass -c "irm https://example.com/installer.ps1 | iex"
 ```
