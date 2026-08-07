@@ -1,6 +1,7 @@
 import { existsSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import type { CAC } from "cac";
+import pkg from "../../package.json";
 import exampleManifest from "./example.manifest.json";
 
 export function registerInitCommand(cli: CAC) {
@@ -13,7 +14,7 @@ export function registerInitCommand(cli: CAC) {
     }
 
     const template = {
-      $schema: "https://raw.githubusercontent.com/hethon/ingen/master/schema/manifest.schema.json",
+      $schema: `https://raw.githubusercontent.com/hethon/ingen/v${pkg.version}/schema/manifest.schema.json`,
       ...exampleManifest,
     };
 
