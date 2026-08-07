@@ -76,9 +76,7 @@ export function registerSyncCommand(cli: CAC) {
 
       const release = githubReleaseSchema.parse(await response.json());
 
-      const checksums = new Map(
-        release.assets.filter((asset) => asset.digest).map((asset) => [asset.name, asset.digest]),
-      );
+      const assetsByName = new Map(release.assets.map((asset) => [asset.name, asset]));
 
       let updatedSource = source;
 
@@ -87,13 +85,22 @@ export function registerSyncCommand(cli: CAC) {
       let missing = 0;
 
       for (const [idx, archive] of manifest.archives.entries()) {
-        const checksum = checksums.get(archive.id);
+        const asset = assetsByName.get(archive.id);
 
-        if (!checksum) {
+        if (!asset) {
+          throw new Error(
+            `Archive "${archive.id}" was not found in the assets for ${manifest.owner}/${manifest.repo}@${manifest.tag}. ` +
+              `Check for a typo, or ensure the archive was uploaded to this release.`,
+          );
+        }
+
+        if (!asset.digest) {
           console.warn(`⚠ No GitHub digest found for ${archive.id}`);
           missing++;
           continue;
         }
+
+        const checksum = asset.digest;
 
         if (archive.checksum && `${archive.checksum.style}:${archive.checksum.value}` === checksum) {
           unchanged++;
