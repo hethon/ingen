@@ -4,13 +4,22 @@ This directory contains a sample `ingen` manifest for [Tectonic](https://github.
 
 ## Generating the Installers
 
-To regenerate the scripts in the `installers/` directory, navigate to this folder and run:
+To regenerate the scripts in the `installers/` directory using the provided manifest, run:
 
 ```bash
-bun run ingen generate installer.manifest.json installers
+ingen generate installer.manifest.json ./installers
 ```
 
-## Upgrading the Installation Experience
+## The `ingen` Workflow
+
+If you were creating this manifest from scratch, the workflow would look like this:
+
+1. **Initialize:** Run `ingen init` to generate a boilerplate `installer.manifest.json`.
+2. **Configure:** Edit the manifest to define the targets and `bin_aliases`. You can safely leave the `checksum` fields completely empty.
+3. **Sync Checksums:** Run `ingen sync installer.manifest.json`. The CLI will securely fetch the release from GitHub and automatically populate all the missing asset checksums in-place.
+4. **Generate:** Run `ingen generate installer.manifest.json` to build the final shell and PowerShell scripts.
+
+## Details on how these scripts upgrade the installation experience
 
 Tectonic currently offers its own custom Shell/Powershell installation scripts. However, these scripts have two major UX limitations that `ingen` solves natively:
 
