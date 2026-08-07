@@ -1,4 +1,30 @@
-# @hethon/ingen
+# ingen-cli
+
+## 0.3.0
+
+### Minor Changes
+
+- [#1](https://github.com/hethon/ingen/pull/1) [`666e857`](https://github.com/hethon/ingen/commit/666e85757fc6f60c458b00ff1769c6008a53ea74) - Added the `ingen sync` command.
+
+  You can now run `ingen sync <manifest>` to automatically fetch asset checksums from your GitHub release and inject them directly into your manifest file. It safely edits the file in-place to preserve your formatting and comments, and supports using a `GITHUB_TOKEN` environment variable for private repositories or avoiding rate limits.
+
+- [`9e2db22`](https://github.com/hethon/ingen/commit/9e2db221d32af231f52d0430458c1a0e9eb268bc) - Remove the `hosting` field from the manifest.
+
+  `ingen` now derives the GitHub artifact download path from the `owner`, `repo`, and `tag` fields. New manifests no longer need to specify `hosting.github.artifact_download_path`, reducing duplication and simplifying the manifest.
+
+- [`866ac40`](https://github.com/hethon/ingen/commit/866ac40c0fa292f95d7d4d005e1575741bafa48a) - The npm package has been renamed from `@hethon/ingen` to `ingen-cli`.
+
+  To upgrade, uninstall `@hethon/ingen` and install `ingen-cli` instead.
+
+- [`18954c2`](https://github.com/hethon/ingen/commit/18954c25ff132d12baf85d508309d4374776fd58) - Simplify checksum configuration by combining the checksum style and value.
+
+  The `checksum_style` field has been removed. Checksums are now specified as a single string using the format `<algorithm>:<digest>` (for example, `sha256:abc123...`).
+
+  This removes duplicated checksum metadata and keeps the algorithm and digest together as a single value.
+
+### Patch Changes
+
+- [`290f8ab`](https://github.com/hethon/ingen/commit/290f8abe5bb9385589b74140cf44ed444052d22f) - Fixed an issue where valid CLI invocations such as `--help` could incorrectly be reported as unknown or missing commands.
 
 ## 0.2.0
 
