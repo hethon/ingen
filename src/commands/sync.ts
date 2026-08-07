@@ -21,11 +21,20 @@ const formattingOptions = {
 
 export function registerSyncCommand(cli: CAC) {
   cli
-    .command("sync <manifest>", "Fetch checksums from GitHub releases and update the manifest")
-    .action(async (manifestPath: string) => {
+    .command("sync <manifest>", "Update manifest checksums from a GitHub release")
+    .option("--app-version <version>", "Update the manifest to this application version before syncing")
+    .action(async (manifestPath: string, options: { appVersion?: string }) => {
       const source = readFileSync(manifestPath, "utf8");
       const { $schema: _, ...rawManifestData } = JSON.parse(source);
       const manifest = manifestSchema.parse(rawManifestData);
+
+      let appVersionChanged = false;
+
+      if (options.appVersion !== undefined && options.appVersion !== manifest.app_version) {
+        manifest.app_version = options.appVersion;
+        appVersionChanged = true;
+      }
+
       resolveManifest(manifest);
 
       console.log(`Syncing checksums from ${manifest.owner}/${manifest.repo}@${manifest.tag}...`);
@@ -80,6 +89,15 @@ export function registerSyncCommand(cli: CAC) {
 
       let updatedSource = source;
 
+      if (appVersionChanged) {
+        updatedSource = applyEdits(
+          updatedSource,
+          modify(updatedSource, ["app_version"], manifest.app_version, { formattingOptions }),
+        );
+
+        console.log(`✓ Updated app version to ${manifest.app_version}`);
+      }
+
       let updated = 0;
       let unchanged = 0;
       let missing = 0;
@@ -117,7 +135,7 @@ export function registerSyncCommand(cli: CAC) {
         console.log(`✓ Updated checksum for ${archive.id}`);
       }
 
-      if (updated > 0) {
+      if (updated > 0 || appVersionChanged) {
         writeFileSync(manifestPath, updatedSource);
       }
 
@@ -125,6 +143,10 @@ export function registerSyncCommand(cli: CAC) {
 
       if (updated > 0) {
         console.log(`Updated ${updated} archive checksum(s).`);
+      }
+
+      if (appVersionChanged) {
+        console.log(`Updated app version to ${manifest.app_version}.`);
       }
 
       if (unchanged > 0) {
@@ -135,7 +157,7 @@ export function registerSyncCommand(cli: CAC) {
         console.log(`${missing} archive checksum(s) could not be resolved.`);
       }
 
-      if (updated === 0 && missing === 0) {
+      if (updated === 0 && missing === 0 && !appVersionChanged) {
         console.log("Manifest is already synchronized.");
       }
     });
