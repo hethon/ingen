@@ -32,7 +32,7 @@ This creates an `installer.manifest.json` with valid placeholders and a `$schema
 
 Edit the manifest to describe your project's release artifacts.
 
-If you publish releases on GitHub, you can automatically populate or update archive checksums from the release assets:
+If you publish releases on GitHub, you can leave checksum fields out of the manifest and let `ingen sync` fill them in from the release assets:
 
 ```sh
 ingen sync installer.manifest.json
@@ -59,6 +59,24 @@ curl --proto '=https' --tlsv1.2 -LsSf https://example.com/installer.sh | sh
 
 ```powershell
 powershell -ExecutionPolicy Bypass -c "irm https://example.com/installer.ps1 | iex"
+```
+
+## Updating Installers for New Releases
+
+When you release a new version of your project, you can update your `ingen` manifest and regenerate the installers as part of your release process.
+
+The fields that usually change are `app_version` and the `archives[].checksum` fields.
+
+If your release artifacts are hosted on GitHub, `ingen sync` can update both `app_version` and `checksum` fields from the new release's assets:
+
+```sh
+ingen sync installer.manifest.json --app-version <new-version>
+```
+
+Whether you manually updated the manifest or used `ingen sync`, the next step is to regenerate the installers using the updated manifest:
+
+```sh
+ingen generate installer.manifest.json ./dist
 ```
 
 ## Examples
