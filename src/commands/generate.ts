@@ -8,8 +8,7 @@ export function registerGenerateCommand(
 ) {
   cli
     .command("generate <manifest> [output-dir]", "Generate shell/PowerShell installers")
-    .option("--app-version <version>", "Override the app_version field in the manifest")
-    .action((manifestPath: string, outDirArg: string | undefined, options: { appVersion?: string }) => {
+    .action((manifestPath: string, outDirArg: string | undefined) => {
       const outDir = outDirArg ?? "./out";
 
       generate({
@@ -17,7 +16,6 @@ export function registerGenerateCommand(
         templatesDir,
         outDir,
         provider,
-        appVersionOverride: options.appVersion,
       });
       console.log(`✓ wrote ${outDir}/installer.sh`);
       console.log(`✓ wrote ${outDir}/installer.ps1`);
