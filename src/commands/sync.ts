@@ -45,6 +45,32 @@ export function registerSyncCommand(cli: CAC) {
       );
 
       if (!response.ok) {
+        const hasToken = Boolean(process.env.GITHUB_TOKEN);
+
+        const remaining = response.headers.get("x-ratelimit-remaining");
+        const reset = response.headers.get("x-ratelimit-reset");
+
+        if (response.status === 403 && remaining === "0") {
+          let message = "GitHub API rate limit exceeded.";
+
+          if (reset) {
+            const resetAt = new Date(Number(reset) * 1000).toLocaleString();
+            message += ` Try again after ${resetAt}.`;
+          }
+
+          if (!hasToken) {
+            message += " Set the GITHUB_TOKEN environment variable to increase the API rate limit.";
+          }
+
+          throw new Error(message);
+        }
+
+        if (response.status === 404 && !hasToken) {
+          throw new Error(
+            "GitHub release not found. If this is a private repository, set the GITHUB_TOKEN environment variable.",
+          );
+        }
+
         throw new Error(`Failed to fetch GitHub release: ${response.status} ${response.statusText}`);
       }
 
