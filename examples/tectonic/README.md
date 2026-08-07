@@ -10,14 +10,14 @@ To regenerate the scripts in the `installers/` directory using the provided mani
 ingen generate installer.manifest.json ./installers
 ```
 
-## The `ingen` Workflow
+## Updating to a New Version
 
-If you were creating this manifest from scratch, the workflow would look like this:
+When a new version of Tectonic is released, updating the installers is a quick two-step process:
 
-1. **Initialize:** Run `ingen init` to generate a boilerplate `installer.manifest.json`.
-2. **Configure:** Edit the manifest to define the targets and `bin_aliases`. You can safely leave the `checksum` fields completely empty.
-3. **Sync Checksums:** Run `ingen sync installer.manifest.json`. The CLI will securely fetch the release from GitHub and automatically populate all the missing asset checksums in-place.
-4. **Generate:** Run `ingen generate installer.manifest.json` to build the final shell and PowerShell scripts.
+```sh
+ingen sync installer.manifest.json --app-version <new-version>
+ingen generate installer.manifest.json ./installers
+```
 
 ## Details on how these scripts upgrade the installation experience
 
