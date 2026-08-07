@@ -1,5 +1,5 @@
 ---
-"@hethon/ingen": minor
+"ingen-cli": minor
 ---
 
 Remove the `hosting` field from the manifest.

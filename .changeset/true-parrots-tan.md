@@ -1,5 +1,5 @@
 ---
-"@hethon/ingen": minor
+"ingen-cli": minor
 ---
 
 Simplify checksum configuration by combining the checksum style and value.

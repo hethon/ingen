@@ -1,5 +1,5 @@
 ---
-"@hethon/ingen": minor
+"ingen-cli": minor
 ---
 
 Added the `ingen sync` command.
