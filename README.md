@@ -63,9 +63,9 @@ powershell -ExecutionPolicy Bypass -c "irm https://example.com/installer.ps1 | i
 
 ## Examples
 
-The [`examples/`](./examples) directory contains complete manifests for real-world projects.
+The [`examples/`](https://github.com/hethon/ingen/blob/master/examples) directory contains complete manifests for real-world projects.
 
-In particular, [`examples/caddy`](./examples/caddy) demonstrates how a Go project maps its release artifacts to Rust target triples, which `ingen` uses to identify supported platforms.
+In particular, [`examples/caddy`](https://github.com/hethon/ingen/blob/master/examples/caddy) demonstrates how a Go project maps its release artifacts to Rust target triples, which `ingen` uses to identify supported platforms.
 
 ## Acknowledgements
 
