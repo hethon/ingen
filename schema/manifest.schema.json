@@ -4,11 +4,13 @@
   "properties": {
     "app_name": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The name of the application (e.g., 'ripgrep')."
     },
     "app_version": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The release version of the application (e.g., '1.0.0')."
     },
     "base_urls": {
       "minItems": 1,
@@ -16,11 +18,13 @@
       "items": {
         "type": "string",
         "format": "uri"
-      }
+      },
+      "description": "List of URLs where archives are hosted. The installer tries each URL one after another. The URLs support {owner}, {repo}, {tag}, and {app_version} substitutions."
     },
     "install_success_msg": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The message printed to the console upon successful installation."
     },
     "install_paths": {
       "type": "array",
@@ -28,7 +32,8 @@
         "type": "string",
         "minLength": 1,
         "pattern": "^(~\\/.*|\\$[A-Za-z_][A-Za-z0-9_]*(?:\\/.*)?)$"
-      }
+      },
+      "description": "List of target directories where the executables should be placed, in order of preference. The installer tries each path in order and uses the first one that is valid on the user's machine. Supports `~/` (home relative) and `$VAR/` (environment variable relative)."
     },
     "bin_aliases": {
       "type": "object",
@@ -41,19 +46,23 @@
           "type": "string",
           "minLength": 1
         }
-      }
+      },
+      "description": "A mapping of executable names to a list of aliases. The installer creates symlinks or copies for these aliases and places them in the chosen install path."
     },
     "owner": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The organization or username that owns the repository."
     },
     "repo": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The repository name."
     },
     "tag": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "The Git tag used for the release. Supports '{app_version}' substitution (e.g., 'v{app_version}')."
     },
     "windows_archive": {
       "type": "object",
@@ -65,21 +74,24 @@
             ".tar.xz",
             ".tar.zst",
             ".zip"
-          ]
+          ],
+          "description": "The file extension of the archives."
         },
         "layout": {
           "type": "string",
           "enum": [
             "flat",
             "wrapped"
-          ]
+          ],
+          "description": "The directory structure inside the archives. 'flat' means the executable and other files are at the root. 'wrapped' means the executable and other files nested inside a single top-level folder."
         }
       },
       "required": [
         "style",
         "layout"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Layout and extension settings for Windows archives. Can be overridden per archive."
     },
     "unix_archive": {
       "type": "object",
@@ -91,21 +103,24 @@
             ".tar.xz",
             ".tar.zst",
             ".zip"
-          ]
+          ],
+          "description": "The file extension of the archives."
         },
         "layout": {
           "type": "string",
           "enum": [
             "flat",
             "wrapped"
-          ]
+          ],
+          "description": "The directory structure inside the archives. 'flat' means the executable and other files are at the root. 'wrapped' means the executable and other files nested inside a single top-level folder."
         }
       },
       "required": [
         "style",
         "layout"
       ],
-      "additionalProperties": false
+      "additionalProperties": false,
+      "description": "Layout and extension settings for Unix (Linux/macOS) archives. Can be overridden per archive."
     },
     "executables": {
       "minItems": 1,
@@ -113,23 +128,27 @@
       "items": {
         "type": "string",
         "minLength": 1
-      }
+      },
+      "description": "A list of executable filenames expected to be found inside the archives. Can be overridden per archive."
     },
     "cdylibs": {
       "type": "array",
       "items": {
         "type": "string",
         "minLength": 1
-      }
+      },
+      "description": "A list of dynamic libraries to extract from the archives. Can be overridden per archive."
     },
     "cstaticlibs": {
       "type": "array",
       "items": {
         "type": "string",
         "minLength": 1
-      }
+      },
+      "description": "A list of static libraries to extract from the archives. Can be overridden per archive."
     },
     "min_glibc_version": {
+      "description": "The minimum glibc version required by the archives (e.g., '2.17'). Applies only to archives with a '*-linux-gnu-*' target. If set, the installer will check that the user's glibc version meets this minimum before installation. If omitted, no glibc floor is enforced. Can be overridden per archive.",
       "type": "string",
       "pattern": "^\\d+\\.\\d+$"
     },
@@ -141,13 +160,16 @@
         "properties": {
           "id": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "description": "The exact filename of the archive in the release (e.g., 'my-app-x86_64-linux.tar.gz'). Supports '{app_version}' substitution."
           },
           "checksum": {
+            "description": "The cryptographic checksum, formatted as 'algorithm:hash' (e.g., 'sha256:abcd...'). If omitted, checksum verification is skipped for this archive. Can be auto-populated by running `ingen sync.",
             "type": "string",
             "pattern": "^(sha256|sha512|sha3-256|sha3-512|blake2s|blake2b):[0-9a-fA-F]+$"
           },
           "executables": {
+            "description": "The list of executables to extract from this specific archive.",
             "minItems": 1,
             "type": "array",
             "items": {
@@ -156,6 +178,7 @@
             }
           },
           "cdylibs": {
+            "description": "The list of dynamic libraries to extract from this specific archive.",
             "type": "array",
             "items": {
               "type": "string",
@@ -163,6 +186,7 @@
             }
           },
           "cstaticlibs": {
+            "description": "The list of static libraries to extract from this specific archive.",
             "type": "array",
             "items": {
               "type": "string",
@@ -170,6 +194,7 @@
             }
           },
           "zip_style": {
+            "description": "The file extension of this specific archive.",
             "type": "string",
             "enum": [
               ".tar.gz",
@@ -180,13 +205,16 @@
           },
           "target": {
             "type": "string",
-            "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$"
+            "pattern": "^[a-z0-9_]+(-[a-z0-9_.]+){2,4}$",
+            "description": "The Rust-style target triple this archive is compiled for (e.g., 'x86_64-unknown-linux-gnu', 'aarch64-apple-darwin')."
           },
           "min_glibc_version": {
+            "description": "The minimum glibc version required for this specific archive.",
             "type": "string",
             "pattern": "^\\d+\\.\\d+$"
           },
           "layout": {
+            "description": "The archive layout of this specific archive.",
             "type": "string",
             "enum": [
               "flat",
@@ -199,7 +227,8 @@
           "target"
         ],
         "additionalProperties": false
-      }
+      },
+      "description": "A list of all archives that contain executables."
     },
     "$schema": {
       "type": "string"
