@@ -85,8 +85,14 @@ The [`examples/`](https://github.com/hethon/ingen/blob/master/examples) director
 
 In particular, [`examples/caddy`](https://github.com/hethon/ingen/blob/master/examples/caddy) demonstrates how a Go project maps its release artifacts to Rust target triples, which `ingen` uses to identify supported platforms.
 
+## Installer Security
+
+The generated installers come from templates that are included directly in this repository. `ingen` does not download installer code at runtime or silently replace the templates during generation.
+
+The templates are based on a pinned `cargo-dist` release, and local changes are tracked and documented. See [`templates/README.md`](https://github.com/hethon/ingen/tree/master/templates) to compare the vendored templates with upstream and review every change made by `ingen`.
+
 ## Acknowledgements
 
 `ingen` builds on ideas and engineering from the [dist](https://github.com/axodotdev/cargo-dist) project.
 
-In particular, it [vendors](https://github.com/hethon/ingen/tree/vendor/cargo-dist) `dist`'s installer templates and [ports](https://github.com/hethon/ingen/blob/master/src/manifest-parser/platforms.ts) its platform compatibility logic.
+In particular, it [vendors](https://github.com/hethon/ingen/tree/master/templates) `dist`'s installer templates and [ports](https://github.com/hethon/ingen/blob/master/src/manifest-parser/platforms.ts) its platform compatibility logic.
