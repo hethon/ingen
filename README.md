@@ -61,6 +61,11 @@ curl --proto '=https' --tlsv1.2 -LsSf https://example.com/installer.sh | sh
 powershell -ExecutionPolicy Bypass -c "irm https://example.com/installer.ps1 | iex"
 ```
 
+## Manifest Reference
+
+See the [manifest reference](https://github.com/hethon/ingen/blob/master/docs/manifest_reference.md) for all available manifest fields, including their types, required/optional status, and descriptions.
+
+
 ## Updating Installers for New Releases
 
 When you release a new version of your project, you can update your `ingen` manifest and regenerate the installers as part of your release process.
