@@ -65,6 +65,11 @@ powershell -ExecutionPolicy Bypass -c "irm https://example.com/installer.ps1 | i
 
 See the [manifest reference](https://github.com/hethon/ingen/blob/master/docs/manifest_reference.md) for all available manifest fields, including their types, required/optional status, and descriptions.
 
+## Examples
+
+The [`examples/`](https://github.com/hethon/ingen/blob/master/examples) directory contains complete manifests for real-world projects.
+
+In particular, [`examples/caddy`](https://github.com/hethon/ingen/blob/master/examples/caddy) demonstrates how a Go project maps its release artifacts to Rust target triples, which `ingen` uses to identify supported platforms.
 
 ## Updating Installers for New Releases
 
@@ -83,12 +88,6 @@ Whether you manually updated the manifest or used `ingen sync`, the next step is
 ```sh
 ingen generate installer.manifest.json ./dist
 ```
-
-## Examples
-
-The [`examples/`](https://github.com/hethon/ingen/blob/master/examples) directory contains complete manifests for real-world projects.
-
-In particular, [`examples/caddy`](https://github.com/hethon/ingen/blob/master/examples/caddy) demonstrates how a Go project maps its release artifacts to Rust target triples, which `ingen` uses to identify supported platforms.
 
 ## How your users can control installer behavior
 
