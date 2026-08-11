@@ -25,6 +25,20 @@ ingen generate installer.manifest.json ./installers
 
 - **Windows Mapping:** Go doesn't natively differentiate between `msvc` and `gnu` builds. We mapped the Windows artifacts to `-msvc` as it is the default convention expected by the installer script's fallback hierarchy.
 
+## Try It Out
+
+You can run the generated installers right now directly from this repository to see how they behave:
+
+**Linux / macOS:**
+```bash
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/caddy/installers/installer.sh | sh
+```
+
+**Windows (PowerShell):**
+```ps
+irm https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/caddy/installers/installer.ps1 | iex
+```
+
 ## Known Issues
 
 - **Unreachable Targets:** We included Caddy's `armv5` and `FreeBSD+ARM` binaries in the manifest for completeness. However, the OS/architecture detection logic in the underlying `installer.sh.j2` template does not currently recognize these specific environments, making these specific binaries practically unreachable for end-users running the script.

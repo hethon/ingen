@@ -19,6 +19,20 @@ ingen sync installer.manifest.json --app-version <new-version>
 ingen generate installer.manifest.json ./installers
 ```
 
+## Try It Out
+
+You can run the generated installers right now directly from this repository to see how they behave:
+
+**Linux / macOS:**
+```bash
+curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/tectonic/installers/installer.sh | sh
+```
+
+**Windows (PowerShell):**
+```ps
+irm https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/tectonic/installers/installer.ps1 | iex
+```
+
 ## Details on how these scripts upgrade the installation experience
 
 Tectonic currently offers its own custom Shell/Powershell installation scripts. However, these scripts have two major UX limitations that `ingen` solves natively:
