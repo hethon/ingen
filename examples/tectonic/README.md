@@ -29,8 +29,8 @@ curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/hethon/i
 ```
 
 **Windows (PowerShell):**
-```ps
-irm https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/tectonic/installers/installer.ps1 | iex
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/tectonic/installers/installer.ps1 | iex"
 ```
 
 ## Details on how these scripts upgrade the installation experience
