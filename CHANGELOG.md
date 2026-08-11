@@ -1,5 +1,21 @@
 # ingen-cli
 
+## 0.4.0
+
+### Minor Changes
+
+- [`82b7ced`](https://github.com/hethon/ingen/commit/82b7cedde59c991a78eeb5fffcefd4ef090ac319) - Schema URLs are now versioned in manifests bootstrapped by `ingen init`.
+
+- [`8be8023`](https://github.com/hethon/ingen/commit/8be8023d38f885198fe6dacad158ed589753a0cc) - Removed the `--app-version` flag from the `ingen generate` command.
+
+  The `generate` command is now strictly responsible for building scripts based exactly on the manifest file on disk. To update your installers for a new release, you should now update the `app_version` field directly in your `installer.manifest.json` or use the new `ingen sync` command.
+
+- [`d563517`](https://github.com/hethon/ingen/commit/d563517863a62e9eafe0e64b983c939e160f2117) - Added support for syncing a specific application version with `ingen sync --app-version`. This updates `app_version` in the manifest and fetches checksums from the matching GitHub release.
+
+### Patch Changes
+
+- [`4c5e078`](https://github.com/hethon/ingen/commit/4c5e0788e8713edd19f581b5d02498fcb8194e82) - Added rich hover documentation to the manifest schema. When writing your `installer.manifest.json` in an editor like VSCode, you can now hover over any field to see detailed descriptions.
+
 ## 0.3.0
 
 ### Minor Changes
