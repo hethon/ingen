@@ -31,7 +31,7 @@ You can run the generated installers right now directly from this repository to 
 
 **Linux / macOS:**
 ```bash
-curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/caddy/installers/installer.sh | sh
+curl --proto '=https' --tlsv1.2 -LsSf https://raw.githubusercontent.com/hethon/ingen/refs/heads/master/examples/caddy/installers/installer.sh | sh
 ```
 
 **Windows (PowerShell):**
