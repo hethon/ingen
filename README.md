@@ -135,6 +135,10 @@ The generated installers come from templates that are included directly in this 
 
 The templates are based on a pinned `cargo-dist` release, and local changes are tracked and documented. See [`templates/README.md`](https://github.com/hethon/ingen/tree/master/templates) to compare the vendored templates with upstream and review every change made by `ingen`.
 
+### macOS Gatekeeper
+
+On macOS, browser downloads are marked with the `com.apple.quarantine` extended attribute, which triggers Gatekeeper's quarantine checks when the downloaded software is run. Files downloaded with `curl` do not receive this extended attribute, so binaries installed through the generated `curl | sh` installer do not trigger Gatekeeper's quarantine checks. This is a side effect of using `curl` to download release artifacts, not behavior specific to `ingen`.
+
 ## Acknowledgements
 
 `ingen` builds on ideas and engineering from the [dist](https://github.com/axodotdev/cargo-dist) project.
