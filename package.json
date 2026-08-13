@@ -30,7 +30,8 @@
     "update-vendor": "bun run scripts/update-vendor.ts",
     "schema:check": "bun run scripts/generate-schema.ts && git diff --exit-code schema/manifest.schema.json",
     "manifest-doc:check": "bun run scripts/generate-manifest-reference.ts && git diff --exit-code docs/manifest_reference.md",
-    "docs:check": "bun run schema:check && bun run manifest-doc:check"
+    "examples:check": "bun run scripts/generate-example-installers.ts && git diff --exit-code examples/*/installers/*",
+    "docs:check": "bun run schema:check && bun run manifest-doc:check && bun run examples:check"
   },
   "dependencies": {
     "cac": "^7.0.0",
