@@ -1,0 +1,56 @@
+{
+  "$schema": "../../schema/manifest.schema.json",
+
+  "app_name": "Zola",
+  "owner": "getzola",
+  "repo": "zola",
+  "app_version": "0.23.3",
+  "tag": "v{app_version}",
+  "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
+  "install_paths": ["$XDG_BIN_HOME/", "$XDG_DATA_HOME/../bin", "~/.local/bin"],
+  "install_success_msg": "everything's installed!",
+  "bin_aliases": {},
+  "windows_archive": {
+    "style": ".zip",
+    "layout": "flat"
+  },
+  "unix_archive": {
+    "style": ".tar.gz",
+    "layout": "flat"
+  },
+  "executables": ["zola"],
+  "cdylibs": [],
+  "cstaticlibs": [],
+  "archives": [
+    {
+      "id": "zola-v{app_version}-aarch64-apple-darwin.tar.gz",
+      "target": "aarch64-apple-darwin",
+      "checksum": "sha256:5e3575cc7b054f20002eecf2c2d9850f0771f4f291f5c68ae748c72005679407"
+    },
+    {
+      "id": "zola-v{app_version}-aarch64-unknown-linux-gnu.tar.gz",
+      "target": "aarch64-unknown-linux-gnu",
+      "checksum": "sha256:15387186bc8fde347dd931490afafe462ccc391db049e9e19c80a48dd060a8c9"
+    },
+    {
+      "id": "zola-v{app_version}-x86_64-apple-darwin.tar.gz",
+      "target": "x86_64-apple-darwin.tar",
+      "checksum": "sha256:1c0a0cc90653b15267d9f6a52e2ff52ee2a442af18235f9dbf5ca5cc30ba137e"
+    },
+    {
+      "id": "zola-v{app_version}-x86_64-pc-windows-msvc.zip",
+      "target": "x86_64-pc-windows-msvc",
+      "checksum": "sha256:7d5d860e620e5edd460d3796b0a98a6428c845a246f0f4d45929a29d44bbc6b8"
+    },
+    {
+      "id": "zola-v{app_version}-x86_64-unknown-linux-gnu.tar.gz",
+      "target": "x86_64-unknown-linux-gnu",
+      "checksum": "sha256:f07c92607e5745268b576bd325ceef3a582aada253bb64db8d92a8a85303d958"
+    },
+    {
+      "id": "zola-v{app_version}-x86_64-unknown-linux-musl.tar.gz",
+      "target": "x86_64-unknown-linux-musl",
+      "checksum": "sha256:40c66fd39bd190cd587cd67aea7039cd5d27a12617d4941f77e9e1454b020f26"
+    }
+  ]
+}
