@@ -1,0 +1,66 @@
+{
+  "$schema": "../../schema/manifest.schema.json",
+
+  "app_name": "Badness",
+  "owner": "jolars",
+  "repo": "badness",
+  "app_version": "0.28.0",
+  "tag": "v{app_version}",
+  "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
+  "install_paths": ["$XDG_BIN_HOME/", "$XDG_DATA_HOME/../bin", "~/.local/bin"],
+  "install_success_msg": "everything's installed!",
+  "bin_aliases": {},
+  "windows_archive": {
+    "style": ".zip",
+    "layout": "flat"
+  },
+  "unix_archive": {
+    "style": ".tar.gz",
+    "layout": "flat"
+  },
+  "executables": ["badness"],
+  "cdylibs": [],
+  "cstaticlibs": [],
+  "archives": [
+    {
+      "id": "badness-aarch64-apple-darwin.tar.gz",
+      "target": "aarch64-apple-darwin",
+      "checksum": "sha256:1f796e6a9a3919aaa563dd9600a3a52bc018f13702f54e91ef63a78b6a1d0194"
+    },
+    {
+      "id": "badness-aarch64-pc-windows-msvc.zip",
+      "target": "aarch64-apple-darwin",
+      "checksum": "sha256:4c68f6f42955a4807ba05276df32241472dbb912df494baa52dd1ea3b27e5b65"
+    },
+    {
+      "id": "badness-aarch64-unknown-linux-gnu.tar.gz",
+      "target": "aarch64-unknown-linux-gnu",
+      "checksum": "sha256:08f4eac04f50f7df4b41ef512e24f2be7b05533276e5fac792e4b62b839a9749"
+    },
+    {
+      "id": "badness-aarch64-unknown-linux-musl.tar.gz",
+      "target": "aarch64-unknown-linux-musl",
+      "checksum": "sha256:d080667c42439c4a86157d1fab88d7d81fdcd5845fb7512f0dffc575949bae6a"
+    },
+    {
+      "id": "badness-x86_64-apple-darwin.tar.gz",
+      "target": "x86_64-apple-darwin.tar",
+      "checksum": "sha256:f11813f0ceda732fb9d31e581508a69f749085e246bc8fb5907ae90c26c73877"
+    },
+    {
+      "id": "badness-x86_64-pc-windows-msvc.zip",
+      "target": "x86_64-pc-windows-msvc",
+      "checksum": "sha256:2c7e3ba9b8ebc6c1b07c604b6a6eb950db8cf353ec7d6ea5daf634ea4dffe783"
+    },
+    {
+      "id": "badness-x86_64-unknown-linux-gnu.tar.gz",
+      "target": "x86_64-unknown-linux-gnu",
+      "checksum": "sha256:c08f375793dab0f7351eb7860235f98aab3f0665c9fc17b3058c9990ad4ce287"
+    },
+    {
+      "id": "badness-x86_64-unknown-linux-musl.tar.gz",
+      "target": "x86_64-unknown-linux-musl",
+      "checksum": "sha256:2f9274ea1e837d4f33e014ce0423406d0d4ddbde4bea5acdefe913c9ec78c8fd"
+    }
+  ]
+}
