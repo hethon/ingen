@@ -1,0 +1,50 @@
+{
+  "$schema": "../../schema/manifest.schema.json",
+  "app_name": "knope",
+  "app_version": "0.24.0",
+  "owner": "knope-dev",
+  "repo": "knope",
+  "tag": "knope/v{app_version}",
+  "base_urls": ["https://github.com/{owner}/{repo}/releases/download/{tag}"],
+  "windows_archive": {
+    "style": ".tar.gz",
+    "layout": "wrapped"
+  },
+  "unix_archive": {
+    "style": ".tar.gz",
+    "layout": "wrapped"
+  },
+  "executables": ["knope"],
+  "cdylibs": [],
+  "cstaticlibs": [],
+  "bin_aliases": {},
+  "install_paths": ["~/.local/bin"],
+  "install_success_msg": "Knope was successfully installed!",
+  "archives": [
+    {
+      "id": "knope-aarch64-apple-darwin.tgz",
+      "target": "aarch64-apple-darwin",
+      "checksum": "sha256:f4ec9c215b4e6647df0eb664633a8b5b7118d394619e435c24d9a2e993279536"
+    },
+    {
+      "id": "knope-aarch64-unknown-linux-musl.tgz",
+      "target": "aarch64-unknown-linux-musl",
+      "checksum": "sha256:255b5c5174acd8387321e7ffb4e16e251fcbef4ac6f9e64bf3b6fcb39c596aac"
+    },
+    {
+      "id": "knope-x86_64-apple-darwin.tgz",
+      "target": "x86_64-apple-darwin",
+      "checksum": "sha256:7d0a8a556624b6ef0802a7cfd5b6c05ab6668b040fb09ab98bf7855f7405db90"
+    },
+    {
+      "id": "knope-x86_64-pc-windows-msvc.tgz",
+      "target": "x86_64-pc-windows-msvc",
+      "checksum": "sha256:3d95be772e1f54a0c5c20a32e51e6535f883262a55b8e3648fc16673e8e66520"
+    },
+    {
+      "id": "knope-x86_64-unknown-linux-musl.tgz",
+      "target": "x86_64-unknown-linux-musl",
+      "checksum": "sha256:256a1e8bfafb63f49e8b649243767aae0f43c1a8f109a69a251993dcbd6a0c38"
+    }
+  ]
+}
