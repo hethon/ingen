@@ -1,5 +1,11 @@
 # ingen-cli
 
+## 0.4.1
+
+### Patch Changes
+
+- [`98405fd`](https://github.com/hethon/ingen/commit/98405fd457b5f8f5ac93ede79cffcedf21b273ae) - Fix numeric-looking `--app-version` arguments being incorrectly parsed as numbers instead of strings.
+
 ## 0.4.0
 
 ### Minor Changes

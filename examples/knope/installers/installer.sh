@@ -66,7 +66,7 @@ fi
 AUTH_TOKEN="${KNOPE_GITHUB_TOKEN:-}"
 
 read -r RECEIPT <<EORECEIPT
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.4.0"},"source":{"app_name":"knope","name":"knope","owner":"knope-dev","release_type":"github"},"version":"0.24.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.4.1"},"source":{"app_name":"knope","name":"knope","owner":"knope-dev","release_type":"github"},"version":"0.24.0"}
 EORECEIPT
 
 # Some Linux distributions don't set HOME

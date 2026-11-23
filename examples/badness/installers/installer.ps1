@@ -54,7 +54,7 @@ if ($env:BADNESS_DOWNLOAD_URL) {
 $auth_token = $env:BADNESS_GITHUB_TOKEN
 
 $receipt = @"
-{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.4.0"},"source":{"app_name":"Badness","name":"badness","owner":"jolars","release_type":"github"},"version":"0.28.0"}
+{"binaries":["CARGO_DIST_BINS"],"binary_aliases":{},"cdylibs":["CARGO_DIST_DYLIBS"],"cstaticlibs":["CARGO_DIST_STATICLIBS"],"install_layout":"unspecified","install_prefix":"AXO_INSTALL_PREFIX","modify_path":true,"provider":{"source":"ingen","version":"0.4.1"},"source":{"app_name":"Badness","name":"badness","owner":"jolars","release_type":"github"},"version":"0.28.0"}
 "@
 if ($env:XDG_CONFIG_HOME) {
   $receipt_home = "${env:XDG_CONFIG_HOME}\Badness"
