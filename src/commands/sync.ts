@@ -22,16 +22,22 @@ const formattingOptions = {
 export function registerSyncCommand(cli: CAC) {
   cli
     .command("sync <manifest>", "Update manifest checksums from a GitHub release")
-    .option("--app-version <version>", "Update the manifest to this application version before syncing")
-    .action(async (manifestPath: string, options: { appVersion?: string }) => {
+    // CAC's underlying parser (mri) auto-coerces numeric-looking flags (e.g. `1.0` -> `1`).
+    // `{ type: [String] }` opts out of number coercion and collects values as strings.
+    .option("--app-version <version>", "Update the manifest to this application version before syncing", {
+      type: [String],
+    })
+    .action(async (manifestPath: string, options: { appVersion?: string[] }) => {
+      const appVersion = options.appVersion?.at(-1);
+
       const source = readFileSync(manifestPath, "utf8");
       const { $schema: _, ...rawManifestData } = JSON.parse(source);
       const manifest = manifestSchema.parse(rawManifestData);
 
       let appVersionChanged = false;
 
-      if (options.appVersion !== undefined && options.appVersion !== manifest.app_version) {
-        manifest.app_version = options.appVersion;
+      if (appVersion !== undefined && appVersion !== manifest.app_version) {
+        manifest.app_version = appVersion;
         appVersionChanged = true;
       }
 
